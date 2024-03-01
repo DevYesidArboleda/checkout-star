@@ -5,15 +5,15 @@ interface CatalogState {
   [key: string]: SimpleCatalog;
 }
 
-// const getInitialState = () : CatalogState => {
-//   if ( typeof localStorage === 'undefined' ) return {};
-//   const catalogue = JSON.parse( localStorage.getItem( 'catalog' ) ?? '{}' );
+const getInitialState = () : CatalogState => {
+  if ( typeof localStorage === 'undefined' ) return {};
+  const catalogue = JSON.parse( localStorage.getItem( 'catalog' ) ?? '{}' );
   
-//   return catalogue;
-// }
+  return catalogue;
+}
 
 const initialState: CatalogState = {
-  //...getInitialState(),
+  ...getInitialState(),
   //"101624": { id: "101624", name: "Labial Permanente" },
 };
 
@@ -37,7 +37,7 @@ const catalogsSlices = createSlice({
     },
     resetCatalog(state) {
       // Reinicia el estado del catálogo
-      return initialState;
+      return {};
     },
   },
 });
