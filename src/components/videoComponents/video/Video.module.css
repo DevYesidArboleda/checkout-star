@@ -1,0 +1,13 @@
+.mainVideo{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    background-color: #000000; 
+    scroll-snap-align: start; 
+}
+
+.wraperVideo video{
+    object-fit: cover; 
+    height: 100vh !important; 
+}

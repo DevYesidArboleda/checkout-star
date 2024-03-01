@@ -6,7 +6,8 @@ import { Layout } from "@/components/layouts/Layout";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
-import VideoList from "@/components/video/VideoList";
+import VideoList from "@/components/videoComponents/videoList/VideoList";
+import Product from "@/components/product/Product";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,7 +58,7 @@ export default function Home() {
   return (
     <Layout title="Checkout Estrellas" thumbnail={''} name={''}>
       <div className="">
-          {(product_id || catalog_id) && validPage && "contenido para un producto"}
+          {(product_id || catalog_id) && validPage && <Product data={dataFinal} />}
           {catalog_id && (
             <div className={styles.videoListHome}>
               <VideoList />

@@ -1,11 +1,13 @@
 "use client";
 
 import { createRef, useEffect, useRef, useState } from "react";
-import Video from "./Video";
+import Video from "../video/Video";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useGetFeedVideos } from "@/hooks/useGetFeedVideos";
-import styles from "@/styles/VideoList.module.css";
+import styles from "./VideoList.module.css";
+import Lottie from "lottie-react";
+import animationData from "../../../../public/animations/addProductAnimation.json";
 
 export default function VideoList() {
   const [videos, setVideos] = useState<any>();
@@ -14,6 +16,7 @@ export default function VideoList() {
 
   //Se obtienen los videos 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useGetFeedVideos(catalog_id).then((videos) => setVideos(videos));
   }, []);
 
@@ -43,15 +46,27 @@ export default function VideoList() {
                           thumbnail={video.thumbnai}
                         />
                         <button                         
-                          className="text-white absolute bottom-[145px] mb-6 w-16 "
+                          className={styles.buttonAddList}
                         >
-                          {/* <Lottie animationData={animationData} /> */}
-                          <span className="flex justify-center text-white text-[10px] text-center font-bold mt-[-5px]">
+                          { <Lottie animationData={animationData} /> }
+                          <span className={styles.buttonAddListText}>
                             Agregar
                           </span>
                         </button>
 
-                        
+                        <div
+                          className={styles.cartBody}
+                        >
+                          <Image
+                            src="/img/cart.svg"
+                            alt=""
+                            width={20}
+                            height={20}
+                          />
+                          <span className={styles.cartBodyText}>
+                            {/* {addProduct.length} */}0
+                          </span>
+                        </div>  
 
 
                         <div className={styles.imageMain}>
@@ -68,7 +83,7 @@ export default function VideoList() {
                               <div className={styles.priceText}>
                                 <span>
                                   Precio:{" "}
-                                  <span className="">
+                                  <span className={styles.priceBold}>
                                     $
                                     {new Intl.NumberFormat().format(
                                       video.price
@@ -90,17 +105,15 @@ export default function VideoList() {
 
                         <div className={styles.thumbnailContainer}>
                           <div className={styles.thumbnailRounde}>
-                            <div>
                               <img
                                 className={styles.thumbnailImage}
                                 src={video.thumbnail}
                                 alt={`${video.name} overlay thumbnail`}
                               />
-                            </div>
                           </div>
-                          <div className="ml-4 flex-1 py-4">
-                            <div className="flex items-bottom justify-between">
-                              <p className="text-grey-darkest whitespace-nowrap overflow-hidden overflow-ellipsis">
+                          <div className={styles.containerTextImage}>
+                            <div className={styles.textImageThumbanail}>
+                              <p className="">
                                 {video.name}
                               </p>
                             </div>
