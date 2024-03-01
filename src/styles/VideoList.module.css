@@ -1,0 +1,129 @@
+.mainVideoList {
+    overflow: hidden; 
+    width: 100%; 
+    max-width: 24rem; 
+    height: 100vh; 
+    font-size: 0.75rem;
+    line-height: 1rem; 
+    color: #ffffff; 
+    background-color: #000000; 
+}
+
+.sectionVideoList {
+    display: flex; 
+    overflow-y: auto; 
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    left: 0; 
+    padding-bottom: 3.5rem; 
+    flex-direction: column; 
+    height: 100%; 
+    scroll-snap-type: y var(--tw-scroll-snap-strictness); 
+    --tw-scroll-snap-strictness: mandatory; 
+}
+
+.wraperVideoList {
+    display: flex; 
+    position: relative; 
+    flex-direction: row-reverse; 
+    align-items: center; 
+}
+
+.imageMain{
+    position: absolute; 
+    right: 0; 
+    left: 0; 
+    bottom: 160px;
+    width: 80%;
+}
+
+.imageRounde{
+    display: flex; 
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; 
+    padding-left: 0.75rem; 
+    flex-direction: row; 
+    align-items: center; 
+    border-top-right-radius: 9999px;
+    border-bottom-right-radius: 9999px; 
+    border-left-width: 0; 
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
+    width: 75%;
+    background: #21181a91;
+    border-color: #dad2d250;
+}
+.imageRounderWraper{
+    border-radius: 9999px; 
+    border-width: 2px; 
+    border-color: #42E184;
+}
+
+.imageCover {
+    object-fit: cover; 
+    border-radius: 9999px; 
+    width: 3rem; 
+    height: 3rem; 
+}
+
+.priceContainer {
+    padding-left: 1rem; 
+    flex: 1 1 0%;   
+}
+
+.priceText {
+    padding-bottom: 0.5rem; 
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    color: #ffffff; 
+}
+
+.separationfreeTextContainer {
+    width: 100%; 
+    background-color: #ffffff; 
+    height: 2px;
+}
+
+.freeTextContainer{
+    font-size: 1rem;
+    line-height: 1.5rem; 
+    font-weight: 600; 
+    color: #42E184;
+}
+
+.thumbnailContainer {
+    display: flex; 
+    position: absolute; 
+    left: 0; 
+    top: 0.25rem; 
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    align-items: center; 
+    height: 4rem; 
+    cursor: pointer; 
+}
+
+.thumbnailRounde {
+    border-radius: 9999px; 
+    background-image: linear-gradient(to right, var(--tw-gradient-stops)); 
+    --tw-gradient-from: #42e083 var(--tw-gradient-from-position);
+    --tw-gradient-stops: var(--tw-gradient-from),#eab308 var(--tw-gradient-via-position),var(--tw-gradient-to);
+    --tw-gradient-to: #ff8a00 var(--tw-gradient-to-position);
+    padding: 2px;
+}
+
+.thumbnailImage {
+    object-fit: cover; 
+    border-radius: 9999px; 
+    width: 3rem; 
+    height: 3rem; 
+}
+
+
+@media (min-width: 768px) { 
+    .mainVideoList{
+        position: relative; 
+        margin-left: 0;
+        margin-right: 0; 
+    }
+   }

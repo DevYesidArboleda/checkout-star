@@ -227,3 +227,10 @@
     transform: rotate(0deg);
   }
 }
+
+
+.videoListHome{
+  display: flex; 
+  gap: 1.5rem; 
+  justify-content: center; 
+}
