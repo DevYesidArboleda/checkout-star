@@ -1,0 +1,110 @@
+.mainProductGrid{
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 2.5rem; 
+    justify-content: center; 
+    align-items: center; 
+
+
+    @media (min-width: 768px) { 
+    width: 100%; 
+    }
+    @media (min-width: 1024px) { 
+    width: 100%; 
+    }
+    @media (min-width: 1280px) { 
+    width: 100%; 
+    }
+}
+
+.productGridCol{
+    display: flex; 
+    right: 0; 
+    margin-top: 1rem; 
+    flex-direction: column; 
+    gap: 1rem; 
+    width: 100%; 
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.productGridCard{
+    display: flex; 
+    overflow-y: auto; 
+    overflow: hidden; 
+    padding: 1rem; 
+    flex-direction: column; 
+    border-radius: 1rem; 
+    background-color: #ffffff; 
+    border-color: #BBC1CA6B;
+    max-height: 600px;
+}
+
+.productGridCard:first-child{
+    border-bottom: 1px;
+}
+
+.productGridCard:last-child{
+    border-bottom: 0;
+}
+
+.headerProductgridCart{
+    display: flex; 
+    margin-bottom: 0.75rem; 
+    justify-content: space-between; 
+}
+
+.headerProductgridCartText{
+    font-size: 1rem;
+    line-height: 1.5rem; 
+    font-weight: 700; 
+    color: #53545C;
+}
+
+.headerProductgridCartImage{
+    display: flex; 
+    flex-wrap: wrap; 
+    align-items: center; 
+
+    @media (min-width: 1024px) { 
+    display: flow-root 
+    }
+}
+
+.headerProductgridCartImageMain {
+    display: none; 
+    padding: 0.5rem; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 9999px; 
+    background-color: #ffffff; 
+
+    @media (min-width: 1024px) { 
+    display: flex; 
+    }
+}
+
+.headerProductgridCartImageRounde{
+    position: absolute; 
+    margin-right: 0; 
+    margin-bottom: 1.25rem; 
+    margin-left: 1.5rem; 
+    padding: 1px 5px;
+    border-radius: 9999px; 
+    font-size: 0.75rem;
+    line-height: 1rem; 
+    color: #ffffff; 
+    background: #F57E77;
+}
+
+.cleanCart{
+    cursor: pointer; 
+    color: #F57E77;
+    font-size: 12px;
+}
+
+.headerProductGridCartItems{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}

@@ -5,9 +5,11 @@
     height: 100vh; 
     background-color: #000000; 
     scroll-snap-align: start; 
+    max-width: 429px;
 }
 
-.wraperVideo {
+.wraperVideo video{
     object-fit: cover; 
     height: 100vh; 
+    
 }

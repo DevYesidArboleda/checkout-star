@@ -8,11 +8,18 @@ import { useGetFeedVideos } from "@/hooks/useGetFeedVideos";
 import styles from "./VideoList.module.css";
 import Lottie from "lottie-react";
 import animationData from "../../../../public/animations/addProductAnimation.json";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { toggleCatalog } from "@/store/catalog/catalogs";
+import ProductGrid from "@/components/cart/ProductGrid/ProductGrid";
 
 export default function VideoList() {
   const [videos, setVideos] = useState<any>();
   const searchParams = useSearchParams();
   const catalog_id = searchParams.get("catalogueID") || "";
+
+  const dispatch = useAppDispatch();
+
+  const addProduct = useAppSelector((state) => Object.values(state.catalogo));
 
   //Se obtienen los videos 
   useEffect(() => {
@@ -20,6 +27,25 @@ export default function VideoList() {
     useGetFeedVideos(catalog_id).then((videos) => setVideos(videos));
   }, []);
 
+  //Agregar product
+  const onToggle = (
+    id: string,
+    name: string,
+    description: string,
+    price: number,    
+    quantity: number,
+    thumbnail: string,
+    variations: any
+  ) => {
+    const catalog = { id, name, description, quantity, price, thumbnail, variations };
+    console.log(catalog);
+
+    if (addProduct.some((pos) => pos.id === id)) {
+      console.log("La posicion ya existe", id);
+    } else {
+      dispatch(toggleCatalog(catalog));
+    }
+  };
   
   return (
     <>
@@ -45,7 +71,18 @@ export default function VideoList() {
                           price={video.price}
                           thumbnail={video.thumbnai}
                         />
-                        <button                         
+                        <button     
+                        onClick={() =>
+                          onToggle(
+                            video.externalId,
+                            video.name,
+                            video.description,                              
+                            video.price,
+                            1,
+                            video.thumbnail,
+                            video.variations
+                          )
+                        }                    
                           className={styles.buttonAddList}
                         >
                           { <Lottie animationData={animationData} /> }
@@ -64,7 +101,7 @@ export default function VideoList() {
                             height={20}
                           />
                           <span className={styles.cartBodyText}>
-                            {/* {addProduct.length} */}0
+                             {addProduct.length} 
                           </span>
                         </div>  
 
@@ -158,9 +195,11 @@ export default function VideoList() {
                       </div>
                     );
                   })}
-            </section>
-            
+            </section>            
           </main>
+          <div className={styles.videoListProductGrid}>
+            <ProductGrid catalog={addProduct} />
+          </div>
         </>
       ) : (
         <>

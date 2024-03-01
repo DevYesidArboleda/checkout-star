@@ -1,5 +1,6 @@
 import { FC, ReactNode, useEffect } from 'react';
 import Head from 'next/head';
+import { Providers } from '@/store/Providers';
 
 interface Props {
   title?: string;
@@ -36,9 +37,9 @@ export const Layout: FC<Props> = ({ children, title, thumbnail, name }) => {
           width:"100vw",
           height:"100vh"
         }}>
-            <>
+            <Providers>
               { children }
-            </>
+            </Providers>
         </main>
       
       </>
