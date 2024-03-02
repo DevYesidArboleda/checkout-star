@@ -73,22 +73,33 @@ export default function ProductGrid({ catalog }: Props) {
               </div>
             </div>
 
-            {catalog.map((cat) => (
-              <ProductCard key={cat.id} catalogs={cat} />
-            ))}
+            {allProduct.length === 0 ? (
+              <div className={styles.emptyCartContainer}>
+                <Image
+                    src="/img/emptyCart.svg"
+                    alt=""
+                    width={108}
+                    height={95}
+                    className="lg:flex hidden"
+                  />
+                  <span className={styles.emptycartText}>Carrito de compra vacío</span>
+              </div>
+            ) : (
+              catalog.map((cat) => <ProductCard key={cat.id} catalogs={cat} />)
+            )}
           </div>
 
-          <div className="flex flex-col bg-white rounded-2xl overflow-hidden p-4">
-            <div className="text-[#53545C] text-base flex justify-between border-b-1 border-[#BBC1CA6B] py-3">
+          <div className={styles.itemAllItems}>
+            <div className={styles.itemAllItemsTextContainer}>
               <span>Items totales</span>
               <span className="">{allProduct.length}</span>
             </div>
-            <div className="flex flex-col gap-3 py-3">
-              <div className="flex flex-row justify-between">
-                <span className="text-[#53545C] text-base">Envío</span>
-                <span className="text-[#2FCB70] text-base">GRATIS</span>
+            <div className={styles.priceAllItems}>
+              <div className={styles.freeShippingTextContainer}>
+                <span className={styles.freeShipping}>Envío</span>
+                <span className={styles.freeShipping}>GRATIS</span>
               </div>
-              <div className="flex flex-row justify-between text-[#53545C] text-base font-semibold">
+              <div className={styles.priceAllItemsTextContainer}>
                 <span className=" ">Valor total</span>
                 <span className="">
                   ${new Intl.NumberFormat().format(addAll)}
@@ -99,7 +110,7 @@ export default function ProductGrid({ catalog }: Props) {
           <div className="w-full">
             {allProduct.length !== 0 ? (
               <button
-                className=" bg-[#F6A97D] rounded-2xl w-full h-[54px] text-xl font-bold text-[#53545C]"
+                className={styles.nextShopButton}
                 type="button"
                 onClick={handleOpenModal}
               >
