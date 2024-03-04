@@ -1,0 +1,32 @@
+.containerPage {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+}
+
+.container{
+    display: flex; 
+    padding: 1.5rem; 
+    flex-direction: column; 
+    gap: 0.5rem; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 0.5rem; 
+    border-color: #E5E7EB; 
+    background-color: #ffffff; 
+}
+
+ .text1{
+    font-size: 1.25rem;
+    line-height: 1.75rem; 
+    text-align: center; 
+    color: #34D399; 
+}
+
+.text2{
+    font-size: 1rem;
+    line-height: 1.5rem; 
+    font-weight: 500; 
+    color: #000000; 
+}

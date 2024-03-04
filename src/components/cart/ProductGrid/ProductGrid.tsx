@@ -97,7 +97,7 @@ export default function ProductGrid({ catalog }: Props) {
             <div className={styles.priceAllItems}>
               <div className={styles.freeShippingTextContainer}>
                 <span className={styles.freeShipping}>Envío</span>
-                <span className={styles.freeShipping}>GRATIS</span>
+                <span className={styles.freeShippingGreen}>GRATIS</span>
               </div>
               <div className={styles.priceAllItemsTextContainer}>
                 <span className=" ">Valor total</span>

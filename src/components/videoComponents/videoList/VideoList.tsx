@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useGetFeedVideos } from "@/hooks/useGetFeedVideos";
 import styles from "./VideoList.module.css";
+import styles2 from "@/styles/pageNotFound.module.css";
 import Lottie from "lottie-react";
 import animationData from "../../../../public/animations/addProductAnimation.json";
 import { useAppDispatch, useAppSelector } from "@/store";
@@ -182,16 +183,16 @@ export default function VideoList() {
                           </div>
                         </Modal> */}
 
-                        {/* {addProduct.length !== 0 ? (
+                         {addProduct.length !== 0 ? (
                           <div
-                            className="fixed bottom-0 md:w-[384px] w-full h-[84px] text-2xl font-bold text-[#53545C] flex justify-center"
+                            className={styles.buttonAddListProduct}
                             data-ripple-light="true"
                           >
-                            <button className="button">¡Comprar Ahora!</button>
+                            <button className={styles.button}>¡Comprar Ahora!</button>
                           </div>
                         ) : (
                           ""
-                        )} */}
+                        )} 
                       </div>
                     );
                   })}
@@ -203,17 +204,13 @@ export default function VideoList() {
         </>
       ) : (
         <>
-            <div className="flex items-center justify-center h-screen">
-              <div className="bg-white border-gray-200 rounded-lg flex flex-col justify-center items-center gap-2 p-6">
-                <Image src="/img/task_alt.svg" alt="" width={48} height={48} />
-                <span className="text-green-400 text-xl text-center">
-                  Por favor contacta con tu vendedor
-                </span>
-                <span className="text-black text-base font-medium">
-                  Información no válida.
-                </span>
+            <div className={styles2.containerPage}>
+                <div className={styles2.container}>
+                  <Image src="/img/task_alt.svg" alt="" width={48} height={48} />
+                  <span className={styles2.text1}>Por favor contacta con tu vendedor</span>
+                  <span className={styles2.text2}>Información no válida.</span>
+                </div>
               </div>
-            </div>
         </>
       )}
     </>

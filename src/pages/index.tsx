@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import styles2 from "@/styles/pageNotFound.module.css";
 import { Layout } from "@/components/layouts/Layout";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
@@ -65,11 +66,11 @@ export default function Home() {
             </div>
           )}
           {!validPage && loadingContent && (
-              <div className="flex items-center justify-center h-screen">
-                <div className="bg-white border-gray-200 rounded-lg flex flex-col justify-center items-center gap-2 p-6">
+              <div className={styles2.containerPage}>
+                <div className={styles2.container}>
                   <Image src="/img/task_alt.svg" alt="" width={48} height={48} />
-                  <span className="text-green-400 text-xl text-center">Por favor contacta con tu vendedor</span>
-                  <span className="text-black text-base font-medium">Información no válida.</span>
+                  <span className={styles2.text1}>Por favor contacta con tu vendedor</span>
+                  <span className={styles2.text2}>Información no válida.</span>
                 </div>
               </div>
           )}
