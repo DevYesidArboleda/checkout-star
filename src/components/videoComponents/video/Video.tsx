@@ -21,7 +21,7 @@ export default function Video ({ src, name, price, thumbnail }: VideoProps) {
         videoRef.current = ref;
       }}
         url={src}
-        controls={true}
+        controls={false}
         width="100%"
         height="100%"
         playing={isPlaying}

@@ -22,7 +22,7 @@ export default function Product (dataFinal: any) {
     <div className={styles.mainVideo}>
         <ReactPlayer
         url={finalData.videoUrl}
-        controls={true}
+        controls={false}
         width="100%"
         height="100%"
         playing={true}
