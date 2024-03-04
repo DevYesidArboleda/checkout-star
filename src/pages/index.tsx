@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <Layout title="Checkout Estrellas" thumbnail={''} name={''}>
       <div className="">
-          {(product_id || catalog_id) && validPage && <Product data={dataFinal} />}
+          {(product_id || catalog_id) && validPage && <div className={styles.mainProduct} > <Product data={dataFinal} /> </div>}
           {catalog_id && (
             <div className={styles.videoListHome}>
               <VideoList />

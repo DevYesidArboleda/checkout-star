@@ -43,12 +43,12 @@ const ModalForm: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
           style={{
             background: "white",
-            padding: `${windowSize.width <= 500 ? "16px": "20px"}`,
+            padding: `${windowSize.width <= 500 ? "16px": "10px 64px 50px 64px"}`,
             borderRadius: "8px",
-            width: `${windowSize.width <= 500 ? "95%": "380px"}`,
+            width: `${windowSize.width <= 500 ? "95%": "566px"}`,
           }}
         >
-          <button className={`w-full flex justify-end ${windowSize.width <= 500 ? "hidden": ""}`} onClick={onClose}><Image src="/img/close.png" alt="" width={24} height={24} /></button>
+          <button className={`w-full flex justify-end ${windowSize.width <= 500 ? "hidden": ""}`} onClick={onClose}><Image src="/img/close.svg" alt="" width={24} height={24} /></button>
           {children}
         </motion.div>
       </motion.div>

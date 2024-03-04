@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { resetCatalog } from "@/store/catalog/catalogs";
 import Image from "next/image";
 import styles from "./ProdutcGrid.module.css";
+import ModalForm from "@/components/Modal/ModalForm";
+import FormCatalog from "@/components/formCatalog/FormCatalog";
 
 interface Props {
   catalog: SimpleCatalog[];
@@ -120,9 +122,9 @@ export default function ProductGrid({ catalog }: Props) {
               ""
             )}
           </div>
-          {/* <ModalForm isOpen={isModalOpen} onClose={handleCloseModal}>
+           <ModalForm isOpen={isModalOpen} onClose={handleCloseModal}>
               <FormCatalog onSubmit={handleFormSubmit} />
-            </ModalForm> */}
+            </ModalForm> 
         </div>
       </div>
     </>

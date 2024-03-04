@@ -3,6 +3,15 @@
     margin-right: auto;
     right: 0; 
     width: 100%; 
+    border-bottom: 1px solid #BBC1CA6B;
+}
+
+.mainProductCart:first-child{
+    border-bottom: 0;
+}
+.mainProductCart:last-child{
+    border-top: 0 ;
+    border-bottom: 0;
 }
 
 .productCartColumn {

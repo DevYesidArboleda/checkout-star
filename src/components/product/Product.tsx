@@ -16,6 +16,7 @@ export default function Product (dataFinal: any) {
         fetchData();
       }, [dataFinal]);
 
+      console.log("Product", dataFinal);
 
   return (
     <div className={styles.mainVideo}>

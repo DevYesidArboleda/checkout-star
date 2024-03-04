@@ -4,7 +4,7 @@
     gap: 2.5rem; 
     justify-content: center; 
     align-items: center; 
-
+    min-width: 300px;
 
     @media (min-width: 768px) { 
     width: 100%; 
@@ -35,16 +35,8 @@
     flex-direction: column; 
     border-radius: 1rem; 
     background-color: #ffffff; 
-    border-color: #BBC1CA6B;
+   
     max-height: 600px;
-}
-
-.productGridCard:first-child{
-    border-bottom: 1px;
-}
-
-.productGridCard:last-child{
-    border-bottom: 0;
 }
 
 .headerProductgridCart{
@@ -78,7 +70,7 @@
     border-radius: 9999px; 
     background-color: #ffffff; 
 
-    @media (min-width: 1024px) { 
+    @media (min-width: 768px) { 
     display: flex; 
     }
 }
@@ -125,7 +117,7 @@
     font-size: 1rem;
     line-height: 1.5rem; 
     color: #53545C;
-    border-color: #BBC1CA6B;
+    border-bottom:1px solid #BBC1CA6B;
 }
 
 .priceAllItems {
