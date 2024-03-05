@@ -35,7 +35,7 @@
   position: absolute;
   right: 0;
   left: 0;
-  bottom: 160px;
+  bottom: 120px;
   width: 80%;
   max-height: 101px;
   height: 100%;
@@ -135,7 +135,7 @@
   position: absolute;
   margin-bottom: 1.5rem;
   width: 4rem;
-  bottom: 145px;
+  bottom: 115px;
   border: 0;
   background: transparent;
 }

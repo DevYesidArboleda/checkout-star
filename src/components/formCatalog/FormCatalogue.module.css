@@ -32,6 +32,9 @@
     flex-direction: column; 
     width: 100%; 
 
+    @media (max-width: 767px) { 
+        gap: 20px; 
+    }
 
     @media (min-width: 768px) { 
         gap: 8px; 
