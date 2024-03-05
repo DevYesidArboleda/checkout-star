@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ReactNode } from "react";
 import Image from "next/image";
 import { UseWindowSize } from "@/hooks/UseWindowSize";
+import styles from "./ModalForm.module.css"
 
 interface ModalProps {
   isOpen: boolean;
@@ -26,16 +27,16 @@ const ModalForm: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: `${windowSize.width <= 500 ? "#E7ECEF": "rgba(0, 0, 0, 0.6)"}`,
+          background: `${windowSize.width <= 767 ? "#E7ECEF": "rgba(0, 0, 0, 0.6)"}`,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
-          height:`${windowSize.width <= 500 ? "100dvh": ""}`,
-          zIndex:`${windowSize.width <= 500 ? 40: 1}`,
+          height:`${windowSize.width <= 767 ? "100dvh": ""}`,
+          zIndex:`${windowSize.width <= 767 ? 40: 1}`,
         }}
       >
-        <button className={`w-full flex justify-star pl-[11px] mb-2 ${windowSize.width <= 500 ? "": "hidden"}`} onClick={onClose}><Image src="/img/backToPage.svg" alt="" width={20} height={20} /></button>
+        <button className={`${styles.buttonBack} ${windowSize.width <= 767 ? "": styles.buttonBackHidden }`}  onClick={onClose}><Image src="/img/backToPage.svg" alt="" width={20} height={20} /></button>
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -43,12 +44,12 @@ const ModalForm: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
           style={{
             background: "white",
-            padding: `${windowSize.width <= 500 ? "16px": "10px 64px 50px 64px"}`,
+            padding: `${windowSize.width <= 767 ? "16px": "10px 64px 50px 64px"}`,
             borderRadius: "8px",
-            width: `${windowSize.width <= 500 ? "95%": "566px"}`,
+            width: `${windowSize.width <= 767 ? "95%": "566px"}`,
           }}
         >
-          <button className={`w-full flex justify-end ${windowSize.width <= 500 ? "hidden": ""}`} onClick={onClose}><Image src="/img/close.svg" alt="" width={24} height={24} /></button>
+          <button className={`${styles.buttonClose} ${windowSize.width <= 767 ? styles.buttonBackHidden: ""}`} onClick={onClose}><Image src="/img/close.svg" alt="" width={24} height={24} /></button>
           {children}
         </motion.div>
       </motion.div>

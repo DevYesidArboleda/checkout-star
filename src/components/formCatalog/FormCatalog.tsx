@@ -7,7 +7,8 @@ import { FormDataSchema } from "../../../lib/schema";
 import { fetchCity, fetchDeparment } from "../utils/funtions";
 import { useRouter, useSearchParams } from "next/navigation";
 import animationData3 from "../../../public/animations/animationBuyNow.json";
-import styles  from "./FormCatalogue.module.css";
+import styles from "./FormCatalogue.module.css";
+import FormInput from "../inputComponent/formInput";
 
 interface FormularioPedidoProps {
   onSubmit: (data: any) => void;
@@ -16,13 +17,12 @@ interface FormularioPedidoProps {
 type Inputs = z.infer<typeof FormDataSchema>;
 
 const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
-
-    const [department, setDepartment] = useState<any>([]);
-    const [city, setCity] = useState<any>([]);
-    const [cityid, setCityid] = useState(0);
-    const searchParams = useSearchParams();
-    const user_id = searchParams.get("userID");
-    const router = useRouter();
+  const [department, setDepartment] = useState<any>([]);
+  const [city, setCity] = useState<any>([]);
+  const [cityid, setCityid] = useState(0);
+  const searchParams = useSearchParams();
+  const user_id = searchParams.get("userID");
+  const router = useRouter();
 
   const {
     register,
@@ -62,7 +62,7 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
     autoplay: true,
     animationData: animationData3,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
+      preserveAspectRatio: "xMidYMid slice",
     },
   };
 
@@ -72,96 +72,48 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
       <form onSubmit={handleSubmit(processForm)}>
         {/* ... (resto de tus campos de entrada) ... */}
         <div className={styles.mainCatalogueForm}>
-          <h2 className="">
-          Ingresar Información
-          </h2>
+          <h2 className="">Ingresar Información</h2>
 
           <div className={styles.containerForm}>
-            <div className={styles.formINPUT}>
-              <div className="mt-0">
-                <input
-                  type="text"
-                  id="name"
-                  {...register("name", { pattern: /^[A-Za-z]+$/i })}
-                  placeholder="Nombres"
-                  className={styles.bg_Form_input}
-                />
-                {errors.name?.message && (
-                  <p className={styles.alert_input}>
-                    {errors.name.message}
-                  </p>
-                )}
-              </div>
-            </div>
+            <FormInput
+              id="name"
+              type="text"
+              register={register}
+              placeholder="Nombres"
+              error={errors.name?.message}
+            />
 
-            <div className="col-span-full">
-              <div className="mt-5">
-                <input
-                  type="text"
-                  id="lastname"
-                  {...register("lastname")}
-                  placeholder="Apellidos"
-                  className={styles.bg_Form_input}
-                />
-                {errors.lastname?.message && (
-                  <p className={styles.alert_input}>
-                    {errors.lastname.message}
-                  </p>
-                )}
-              </div>
-            </div>
+            <FormInput
+              id="lastname"
+              type="text"
+              register={register}
+              placeholder="Apellidos"
+              error={errors.lastname?.message}
+            />
 
-            <div className="col-span-full">
-              <div className="mt-5">
-                <input
-                  type="number"
-                  id="phone"
-                  {...register("phone")}
-                  placeholder="Telefono"
-                  className={styles.bg_Form_input}
-                />
-                {errors.phone?.message && (
-                  <span className={styles.alert_input}>
-                    {errors.phone.message}
-                  </span>
-                )}
-              </div>
-            </div>
+            <FormInput
+              id="phone"
+              type="number"
+              register={register}
+              placeholder="Telefono"
+              error={errors.phone?.message}
+            />
 
-            <div className="col-span-full">
-              <div className="mt-5">
-                <input
-                  type="email"
-                  id="email"
-                  {...register("email")}
-                  placeholder="Correo Electrónico"
-                  className={styles.bg_Form_input}
-                />
-                {errors.email?.message && (
-                  <span className={styles.alert_input}>
-                    {errors.email.message}
-                  </span>
-                )}
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <div className="mt-5">
-                <input
-                  type="text"
-                  id="street"
-                  {...register("street")}
-                  autoComplete="street-address"
-                  placeholder="Dirección"
-                  className={styles.bg_Form_input}
-                />
-                {errors.street?.message && (
-                  <p className={styles.alert_input}>
-                    {errors.street.message}
-                  </p>
-                )}
-              </div>
-            </div>
+            <FormInput
+              id="email"
+              type="email"
+              register={register}
+              placeholder="Correo Electrónico"
+              error={errors.email?.message}
+            />
+            
+            <FormInput
+              id="street"
+              type="text"
+              register={register}
+              placeholder="Dirección"
+              error={errors.street?.message}
+            />
 
             <div className="xl:col-span-full sm:col-span-3">
               <div className={styles.select_container}>
@@ -208,8 +160,8 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
                       );
                     })}
                 </select>
-                {(errors.city?.message ) && (
-                  <span className="mt-3 text-sm text-red-400">
+                {errors.city?.message && (
+                  <span className={styles.alert_input}>
                     {errors.city.message}
                   </span>
                 )}
@@ -217,7 +169,6 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
             </div>
 
             <div className="col-span-full mt-2">
-              
               <div className="mt-5 ">
                 <textarea
                   id="note"
@@ -230,14 +181,10 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
             </div>
           </div>
           <div className={styles.containerPayButton}>
-            <button
-              className={styles.containerbuttomForm}
-              type="submit"
-            >
-              <div className={styles.buttonPay} data-ripple-light="true"
-                        >
-                        <button className={styles.button}>Finalizar Compra</button>
-                      </div>
+            <button className={styles.containerbuttomForm} type="submit">
+              <div className={styles.buttonPay} data-ripple-light="true">
+                <button className={styles.button}>Finalizar Compra</button>
+              </div>
             </button>
           </div>
         </div>

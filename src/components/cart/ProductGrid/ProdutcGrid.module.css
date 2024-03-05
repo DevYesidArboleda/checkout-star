@@ -6,6 +6,10 @@
     align-items: center; 
     min-width: 300px;
 
+    @media (max-width: 767px) { 
+        display: none; 
+    }
+
     @media (min-width: 768px) { 
     width: 100%; 
     }

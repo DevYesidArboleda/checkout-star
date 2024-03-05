@@ -184,8 +184,8 @@
     cursor: pointer; 
     position: fixed;    
     margin-right: 16px;
-	transition: all 300ms ease 0ms;
-	z-index: 99;
+    transition: all 300ms ease 0ms;
+    z-index: 39;
     @media (min-width: 768px) { 
         display: none; 
     }  
@@ -203,9 +203,9 @@
 }
 
 .videoListProductGrid{
-    display: none;
+    
     @media (min-width: 720px) { 
-        display: none; 
+      
     }
     @media (min-width: 768px) { 
         display: flex; 
@@ -234,7 +234,7 @@
   bottom: 0; 
   justify-content: center; 
   width: 100%;   
-  height: 84px;
+  height: 56px;
   color: #53545C;
   max-width: 429px;
 

@@ -1,0 +1,24 @@
+.buttonClose{
+    display: flex; 
+    justify-content: flex-end; 
+    width: 100%; 
+    border: 0;
+    background: transparent;
+}
+
+.buttonClose img{
+    position: absolute;
+}
+
+.buttonBack {
+    display: flex; 
+    margin-bottom: 0.5rem; 
+    width: 100%; 
+    padding-left: 16px;
+    background-color: transparent;
+    border: 0;
+}
+
+.buttonBackHidden {
+    display: none;
+}
