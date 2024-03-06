@@ -7,9 +7,7 @@ const completePayCatalogue = () => {
 
   return (
     <Layout>
-      <div>
-        <PayCatalog/>
-      </div>
+        <PayCatalog/>      
     </Layout>
   );
 };

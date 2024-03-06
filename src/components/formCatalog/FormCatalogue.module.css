@@ -64,7 +64,8 @@
     --ring-color: #bbbbbc; 
     width: 100%; 
     color: #111827; 
-    background-color: #ffffff; 
+    background: transparent;
+    background-color: #ffffff !important; 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
     border: 1px solid #CFD3D4;
 
@@ -89,7 +90,7 @@
     --ring-color: #bbbbbc; 
     width: 100%; 
     color: #111827; 
-    background-color: #ffffff; 
+    background-color: #ffffff !important; 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
     border: 1px solid #CFD3D4;
 
@@ -106,7 +107,6 @@
     display: inline-block;
     width: 100%; /* Ajusta el ancho según sea necesario */
     border-radius: 0.375rem;
-    border: 1px solid #CFD3D4;
   }
 
 .select_container select {
@@ -118,7 +118,8 @@
   background-repeat: no-repeat;
   background-position: right center ;
   padding-right: 20px;
-  border-right: 12px solid transparent
+  box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  border-right: 12px solid transparent;
 }
 
 .select_container select::after {
