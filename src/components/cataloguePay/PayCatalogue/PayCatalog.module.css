@@ -28,6 +28,7 @@
 
   @media (max-width: 767px) {
     max-width: 400px;
+    margin-bottom: 20px;
   }
 }
 
@@ -113,6 +114,10 @@
   @media (min-width: 768px) {
     padding-bottom: 46px;
   }
+
+  @media (max-width: 500px) { 
+    padding-bottom: 30px;
+}
 }
 
 .startButton button {
@@ -160,6 +165,9 @@
     border-bottom: 1px solid #BBC1CA6B !important;
     margin-left: 0.75rem;
     margin-right: 0.75rem;
+    @media (max-width: 500px) { 
+        width: 95%;
+    }
 }
 
 .productGridCard:first-child{

@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ReactNode } from "react";
 import Image from "next/image";
+import style from "./ModalCart.module.css"
 //import { NavBar } from "../ui";
 
 interface ModalProps {
@@ -26,16 +27,16 @@ const ModalCart: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             left: 0,
             right: 0,
             bottom: 0,
-            background: `${"#E7ECEF"}`,
+            background: "#E7ECEF",
             display: "flex",
             alignItems: "start",
             justifyContent: "end",
-            flexDirection: `${"column"}`,
+            flexDirection: "column",
             height:`${"100dvh"}`,
-            zIndex:1,
+            zIndex:40,
         }}
       >
-        <div className={`${"flex w-full h-9"}`}>
+        <div className={`""flex w-full h-9""`}>
             {/* <NavBar /> */}
           </div>
         <motion.div
@@ -51,9 +52,9 @@ const ModalCart: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             height: "100dvh",
           }}
         >          
-          <div className={`${"flex justify-star"}`}>
+          <div className={`${style.mainContainerModal}`}>
             <button onClick={onClose}><Image src={`${ "/img/backToPage.svg"}`} alt="" width={20} height={20}  /></button>
-            <span className= {`${"text-black font-bold text-base w-[90%] items-center justify-center flex "}`}>Carrito de compra</span>
+            <span className= {`${""}`}>Carrito de compra</span>
           </div>
           {children}
         </motion.div>

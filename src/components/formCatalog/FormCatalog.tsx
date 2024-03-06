@@ -6,7 +6,6 @@ import { z } from "zod";
 import { FormDataSchema } from "../../../lib/schema";
 import { fetchCity, fetchDeparment } from "../utils/funtions";
 import { useRouter, useSearchParams } from "next/navigation";
-import animationData3 from "../../../public/animations/animationBuyNow.json";
 import styles from "./FormCatalogue.module.css";
 import FormInput from "../inputComponent/formInput";
 
@@ -34,7 +33,7 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
 
   const processForm = async (data: any) => {
     // Tu lógica de procesamiento del formulario aquí
-    router.push(`/completePayCatalog?userID=${user_id}`);
+    router.push(`/completePayCatalogue?userID=${user_id}`);
     onSubmit(data);
   };
 
@@ -57,14 +56,7 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
     }
   }, [cityid]);
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData3,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+ 
 
   return (
     <div className="">

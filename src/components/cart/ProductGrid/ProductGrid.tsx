@@ -127,7 +127,7 @@ export default function ProductGrid({ catalog }: Props) {
       </div>
       <ModalForm isOpen={isModalOpen} onClose={handleCloseModal}>
               <FormCatalog onSubmit={handleFormSubmit} />
-            </ModalForm> 
+      </ModalForm> 
     </>
   );
 }

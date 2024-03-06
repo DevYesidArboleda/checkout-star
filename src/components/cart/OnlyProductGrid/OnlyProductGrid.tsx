@@ -117,12 +117,12 @@ export default function OnlyProductGrid({ catalog }: any) {
                   )}
                   <div>
                     <div className={styles.productCartAddRestButton}>
-                      {/* Botón para sumar */}
+                      {/* Botón para restar */}
                       <button onClick={() =>
-                            setQuantity((quantity) => quantity - 1)
+                            {quantity > 1 && setQuantity((quantity) => quantity - 1)}
                           }>-</button>
                       <span>{quantity}</span>
-                      {/* Botón para restar */}
+                      {/* Botón para sumar */}
                       <button onClick={() => setQuantity((quantity) => quantity + 1)}>+</button>
                     </div>
                   </div>

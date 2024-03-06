@@ -39,6 +39,10 @@ export default function Product(dataFinal: any) {
             <Image src="/img/infoProduct.svg" alt="" width={50} height={50} />
           </button>
 
+          <div className={styles.buttonAddListProduct} data-ripple-light="true">
+            <button className={styles.button}>¡Comprar Ahora!</button>
+          </div>
+
           <div className={styles.imageMain}>
             <div className={styles.imageRounde}>
               <div className={styles.imageRounderWraper}>
