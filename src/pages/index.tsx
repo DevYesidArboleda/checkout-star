@@ -9,10 +9,12 @@ import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import VideoList from "@/components/videoComponents/videoList/VideoList";
 import Product from "@/components/product/Product";
+import { GetServerSideProps } from "next";
+import { dataApi } from "../../api";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home({ metadata }: any) {
   const [dataFinal, setDataFinal] = useState<any>([]);
   const [validPage, setValidPage] = useState<boolean>(false);
   const [loadingContent, setLoadingContent] = useState<boolean>(false);
@@ -57,7 +59,7 @@ export default function Home() {
 
 
   return (
-    <Layout title="Checkout Estrellas" thumbnail={''} name={''}>
+    <Layout title="Checkout Estrellas" thumbnail={metadata && metadata[0] ? metadata[0].thumbnail : ''} name={metadata && metadata[0] ? metadata[0].name : ''}>
       <div className="">
           {(product_id || catalog_id) && validPage && <div className={styles.mainProduct} > <Product data={dataFinal} /> </div>}
           {catalog_id && (
@@ -78,3 +80,35 @@ export default function Home() {
     </Layout>
   );
 }
+
+export const getServerSideProps: GetServerSideProps<any> = async (context) => {
+  const { query } = context;
+
+  // Extrae productID de los parámetros de la URL
+  const productID = query.productID as string;
+  const queryParam = { _id: productID };
+
+  try {
+    // Obtener metadatos automáticamente en el servidor
+    const response = await dataApi.get(`/products/allProducts`, {
+      headers: {},
+      params: {
+        query: JSON.stringify(queryParam),
+      },
+    });
+    const metadata: any = response.data.data.products;
+    return {
+      props: {
+        metadata,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+
+    return {
+      props: {
+        metadata: null,
+      },
+    };
+  }
+};
