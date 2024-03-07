@@ -29,7 +29,6 @@ const FormProduct: React.FC<FormularioPedidoProps> = ({ onSubmit, dataFinal  }) 
   const [error, setError] = useState("");
   const [openError, setOpenError] = useState<boolean>(false);
   const product_id = searchParams.get("productID");
-  console.log("data", dataFinal)
 
   const {
     register,
@@ -45,7 +44,7 @@ const FormProduct: React.FC<FormularioPedidoProps> = ({ onSubmit, dataFinal  }) 
   //Envio de formulario
   const processForm: SubmitHandler<Inputs> = async (data) => {
     const client_quantity = dataFinal.quantity;
-    const variation_id = dataFinal.variation;
+    const variation_id = dataFinal.resultData;
     const dataClient: any = {
       client_name: data.name,
       client_direction: data.street,
