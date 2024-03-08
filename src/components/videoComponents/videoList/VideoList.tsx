@@ -59,7 +59,7 @@ export default function VideoList() {
     }
   };
 
-  //carrito abrir y cerrar
+  //Modal abrir y cerrar
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {

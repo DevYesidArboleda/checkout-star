@@ -4,6 +4,7 @@ import styles from "./Product.module.css";
 import Video from "../videoComponents/video/Video";
 import OnlyProductGrid from "../cart/OnlyProductGrid/OnlyProductGrid";
 import Image from "next/image";
+import Modal from "../Modal/ModalInfo/Modal";
 
 export default function Product(dataFinal: any) {
   const [finalData, setFinalData] = useState<any>([]);
@@ -19,7 +20,16 @@ export default function Product(dataFinal: any) {
     fetchData();
   }, [dataFinal]);
 
-  console.log("Product", finalData);
+  //Modal abrir y cerrar
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <>
@@ -33,7 +43,7 @@ export default function Product(dataFinal: any) {
           />
 
           <button
-            // onClick={handleOpenModal}
+            onClick={handleOpenModal}
             className={styles.imageInfo}
           >
             <Image src="/img/infoProduct.svg" alt="" width={50} height={50} />
@@ -92,6 +102,13 @@ export default function Product(dataFinal: any) {
       <div className={styles.containerCart}>
         <OnlyProductGrid catalog={dataFinal} />
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+          <div className={styles.ModalInfo}>
+            <h1>{finalData.name}</h1>
+            <span>{finalData.description}</span>
+          </div>
+      </Modal>
     </>
   );
 }

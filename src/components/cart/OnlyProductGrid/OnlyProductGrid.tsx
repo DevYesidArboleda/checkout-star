@@ -26,7 +26,7 @@ export default function OnlyProductGrid({ catalog }: any) {
       });
     };
 
-    setProduct({ ...finalData, quantity });
+    setProduct({ ...finalData, quantity, resultData });
     fetchData();
   }, [catalog]);
 
@@ -36,7 +36,7 @@ export default function OnlyProductGrid({ catalog }: any) {
 
   useEffect(() => {
     setProduct({ ...finalData, resultData, quantity });
-  }, []);
+  }, [resultData]);
 
   const allProduct = useAppSelector((state) => Object.values(state.catalogo));
   const addAll = allProduct.reduce(
@@ -77,7 +77,7 @@ export default function OnlyProductGrid({ catalog }: any) {
     console.log("dataPoup", data)
   };
 
-  console.log("dataPoup", product)
+  console.log("dataPopup", product)
   
   return (
     <>
@@ -203,7 +203,7 @@ export default function OnlyProductGrid({ catalog }: any) {
       <ModalForm isOpen={isModalOpen} onClose={handleCloseModal}>
         <FormProduct onSubmit={handleFormSubmit} dataFinal={product} />
       </ModalForm> 
-       <PopUpComponent isOpen={showPopup} onClose={closePopup} onSubmit={handlePopupSubmit} finalData={product} />
+       <PopUpComponent isOpen={showPopup} onClose={closePopup} onSubmit={handlePopupSubmit} finalData={finalData} />
     </>
   );
 }

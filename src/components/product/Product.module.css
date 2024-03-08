@@ -213,3 +213,27 @@
       font-size: 16px;
     }
   }
+
+  .ModalInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ModalInfo h1 {
+    font-size: 16px;
+    line-height: 2rem; 
+    font-weight: 600; 
+    @media (max-width: 380px) { 
+      font-size: 16px;
+    }
+  }
+
+  .ModalInfo span {
+    font-size: 16px;
+    line-height: 2rem; 
+    font-weight: 400; 
+    @media (max-width: 380px) { 
+      font-size: 16px;
+    }
+  }

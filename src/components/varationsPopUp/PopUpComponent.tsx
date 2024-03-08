@@ -29,6 +29,7 @@ const PopUpComponent: React.FC<PopupComponentProps> = ({
   const user_id = searchParams.get("userID");
 
   const [inputValue, setInputValue] = useState("");
+  console.log(finalData, "si llego la data")
 
   const handleSubmit = () => {    
     onSubmit(variation);
@@ -116,15 +117,15 @@ const PopUpComponent: React.FC<PopupComponentProps> = ({
           <div className={styles.box}>
             <div className="text-black ">
               {finalData.attributes?.map((attribute: any, index: number) => (
-                <div key={attribute.id} className="flex flex-col">
+                <div key={attribute.id} className={styles.containerMainSelect}>
                   <label
                     htmlFor={attribute.description}
-                    className="mb-3 font-light text-base text-[#53545C]"
+                    className={styles.containerLabel}
                   >{`Seleccionar ${attribute.description}:`}</label>
                   <select
                     key={attribute.stock}
                     id={attribute.description}
-                    className="rounded-medium bg-default-100  p-4 text-star appearance-none  transition duration-500 transform border-none focus:outline-none text-foreground-500 text-ellipsis text-sm font-light"
+                    className={styles.containerSelect}
                     onChange={(e) =>
                       handleVariationChange(
                         attribute.description,
@@ -140,7 +141,7 @@ const PopUpComponent: React.FC<PopupComponentProps> = ({
                     <option
                       value=""
                       disabled
-                      className="text-foreground-500 text-ellipsis text-sm font-light"
+                      className={styles.containerOption1}
                     >
                       Seleccionar ...
                     </option>
@@ -159,13 +160,13 @@ const PopUpComponent: React.FC<PopupComponentProps> = ({
               ))}
 
               {combinationUnavailable && (
-                <div className="text-red-500 pt-2">
+                <div className={styles.popUpError}>
                   <p>¡La combinación seleccionada no está disponible!</p>
                 </div>
               )}              
             </div>
           </div>
-          {combinationUnavailable == false && variation !== "" &&  <button onClick={handleSubmit}>Enviar</button>}
+          {combinationUnavailable == false && variation !== "" &&  <button className={styles.buttonPopUp} onClick={handleSubmit}>Enviar</button>}
         </div>       
       </div>
     </div>
