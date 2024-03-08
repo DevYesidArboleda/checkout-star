@@ -5,6 +5,9 @@ import Video from "../videoComponents/video/Video";
 import OnlyProductGrid from "../cart/OnlyProductGrid/OnlyProductGrid";
 import Image from "next/image";
 import Modal from "../Modal/ModalInfo/Modal";
+import colorNameList from "color-name-list";
+import { colorNameToHex } from "../utils/colors";
+
 
 export default function Product(dataFinal: any) {
   const [finalData, setFinalData] = useState<any>([]);
@@ -31,6 +34,28 @@ export default function Product(dataFinal: any) {
     setIsModalOpen(false);
   };
 
+  //prueba modal para variaciones
+  const attributeValues: any = {};
+
+  finalData.attributes?.forEach((attribute: any) => {
+    const { description, values } = attribute;
+
+    values.forEach((value: any) => {
+      const { attribute_name, value: attributeValue } = value;
+
+      if (!attributeValues[attribute_name]) {
+        attributeValues[attribute_name] = [];
+      }
+
+      const hexColor = colorNameToHex[attributeValue.toLowerCase()];
+      const displayValue = hexColor || attributeValue;
+
+      attributeValues[attribute_name].push(displayValue);
+    });
+  });
+
+  console.log("resultado de variaciones", attributeValues);
+
   return (
     <>
       <div className={styles.mainVideo}>
@@ -42,10 +67,7 @@ export default function Product(dataFinal: any) {
             thumbnail={finalData.thumbnai}
           />
 
-          <button
-            onClick={handleOpenModal}
-            className={styles.imageInfo}
-          >
+          <button onClick={handleOpenModal} className={styles.imageInfo}>
             <Image src="/img/infoProduct.svg" alt="" width={50} height={50} />
           </button>
 
@@ -104,11 +126,44 @@ export default function Product(dataFinal: any) {
       </div>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-          <div className={styles.ModalInfo}>
-            <h1>{finalData.name}</h1>
-            <span>{finalData.description}</span>
-          </div>
+        <div className={styles.ModalInfo}>
+          <h1>{finalData.name}</h1>
+          <span>{finalData.description}</span>
+        </div>
+        {finalData.attributes?.length > 0 && <div className={styles.containerVariation}>
+          {Object.entries(attributeValues).map(
+            ([attributeName, values]: any) => (
+              <div key={attributeName}>
+                <h3>{attributeName}:</h3>
+                <ul>
+                  {values.map((value: any, index: any) => (
+                    <li
+                      key={index}
+                      style={
+                        isColor(value)
+                          ? {
+                              color: value,
+                              background: value,
+                              width: "24px",
+                              height: "24px",
+                              borderRadius: "5px",
+                            }
+                          : {}
+                      }
+                    >
+                      {isColor(value) ? "" : value}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          )}
+        </div>}
       </Modal>
     </>
   );
 }
+
+const isColor = (value: string): boolean => {
+  return /^#([0-9A-F]{3}){1,2}$/i.test(value);
+};
