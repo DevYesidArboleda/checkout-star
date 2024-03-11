@@ -36,7 +36,7 @@ const PopUpComponent: React.FC<PopupComponentProps> = ({
     onClose(); // Cierra el popup después de procesar la información
   };
 
-  //Prueba variaciones
+  // variaciones
   const [variation, setVaration] = useState("");
   const [selectedVariations, setSelectedVariations] = useState<{
     [key: string]: string;
@@ -103,8 +103,8 @@ const PopUpComponent: React.FC<PopupComponentProps> = ({
     });
   };
 
-  console.log("na", existingVariationId);
-  console.log("naa", variation);
+  // console.log("na", existingVariationId);
+  // console.log("naa", variation);
 
   return (
     <div className="">

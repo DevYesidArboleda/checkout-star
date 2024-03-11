@@ -1,0 +1,23 @@
+
+.mainContainerModal {
+    display: flex; 
+    justify-content: flex-start;
+    border: 0;
+    background: transparent;
+}
+
+.mainContainerModal span{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 1rem;
+    line-height: 1.5rem; 
+    font-weight: 700; 
+    color: #000000; 
+    width: 90%;
+}
+
+.mainContainerModal button {
+    border: 0;
+    background: transparent;
+}

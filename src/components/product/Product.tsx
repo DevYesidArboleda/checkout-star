@@ -7,10 +7,16 @@ import Image from "next/image";
 import Modal from "../Modal/ModalInfo/Modal";
 import colorNameList from "color-name-list";
 import { colorNameToHex } from "../utils/colors";
+import { UseWindowSize } from "@/hooks/UseWindowSize";
+import ModalForm from "../Modal/ModalForm/ModalForm";
+import FormProduct from "../FormProduct/FormProduct";
+import ModalMobile from "../Modal/ModalFormProductMobile/ModalMobile";
+import FormProductMobile from "../FormProductMobile/FormProductMobile";
 
 
 export default function Product(dataFinal: any) {
   const [finalData, setFinalData] = useState<any>([]);
+  const windowSize = UseWindowSize();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +29,17 @@ export default function Product(dataFinal: any) {
     fetchData();
   }, [dataFinal]);
 
+  //Modal abrir y cerrar form
+  const [isModalOpenForm, setIsModalOpenForm] = useState(false);
+
+  const handleOpenModalForm = () => {
+    setIsModalOpenForm(true);
+  };
+
+  const handleCloseModalForm = () => {
+    setIsModalOpenForm(false);
+  };
+
   //Modal abrir y cerrar
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -34,7 +51,18 @@ export default function Product(dataFinal: any) {
     setIsModalOpen(false);
   };
 
-  //prueba modal para variaciones
+  //Modal mobile abrir y cerrar
+  const [isModalOpenMobile, setIsModalOpenMobile] = useState(false);
+
+  const handleOpenModalMobile = () => {
+    setIsModalOpenMobile(true);
+  };
+
+  const handleCloseModalMobile = () => {
+    setIsModalOpenMobile(false);
+  };
+
+  //Modal para variaciones
   const attributeValues: any = {};
 
   finalData.attributes?.forEach((attribute: any) => {
@@ -56,6 +84,12 @@ export default function Product(dataFinal: any) {
 
   console.log("resultado de variaciones", attributeValues);
 
+  const handleFormSubmit = (finalData: any) => {
+    // Lógica de manejo de datos del formulario
+    console.log("Datos del formulario:", finalData);
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div className={styles.mainVideo}>
@@ -71,7 +105,7 @@ export default function Product(dataFinal: any) {
             <Image src="/img/infoProduct.svg" alt="" width={50} height={50} />
           </button>
 
-          <div className={styles.buttonAddListProduct} data-ripple-light="true">
+          <div className={styles.buttonAddListProduct} data-ripple-light="true" onClick={windowSize.width >= 767 ? handleOpenModalForm : handleOpenModalMobile}>
             <button className={styles.button}>¡Comprar Ahora!</button>
           </div>
 
@@ -160,6 +194,12 @@ export default function Product(dataFinal: any) {
           )}
         </div>}
       </Modal>
+      <ModalForm isOpen={isModalOpenForm} onClose={handleCloseModalForm}>
+        <FormProduct onSubmit={handleFormSubmit} dataFinal={finalData} />
+      </ModalForm>
+      <ModalMobile isOpen={isModalOpenMobile} onClose={handleCloseModalMobile}>
+        <FormProductMobile onSubmit={handleFormSubmit} dataFinal={finalData} />
+      </ModalMobile>
     </>
   );
 }

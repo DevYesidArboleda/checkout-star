@@ -1,4 +1,18 @@
-.mainCatalogueForm {
+.containerPrincipalMobile{
+    overflow: overlay;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.containerFormPrincipal{
+    background-color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.mainProductForm {
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
@@ -6,43 +20,14 @@
     width: 100%; 
 }
 
-.mainCatalogueForm h2 {
+.mainProductForm h2 {
     margin-bottom: 0.5rem; 
     font-weight: 700; 
     line-height: 1.75rem; 
     text-align: center; 
     color: #000000; 
-
-    @media (max-width: 768px) { 
-    margin-bottom: 1.25rem; 
     font-size: 20px;
-    line-height: 1.5rem; 
-    margin-top: 40px;
-    }
-
-    @media (min-width: 768px) { 
-    margin-bottom: 1.25rem; 
-    font-size: 1rem;
-    line-height: 1.5rem; 
-    }
-    @media (min-width: 1024px) { 
-    font-size: 1.25rem;
-    line-height: 1.75rem; 
-    font-weight: 500; 
-    }
-}
-
-.labelHidden{
-  display: none;
-
-  @media (max-width: 768px) {     
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
-    letter-spacing: 0em;
-    text-align: left;
-    display: flex;
-    }
+    padding-top: 20px;
 }
 
 .containerForm {
@@ -50,20 +35,7 @@
     margin-top: 0.5rem; 
     flex-direction: column; 
     width: 100%; 
-
-    @media (max-width: 767px) { 
-        gap: 20px; 
-    }
-
-    @media (min-width: 768px) { 
-        gap: 8px; 
-    }
-    @media (min-width: 1024px) { 
-        gap: 8px; 
-    }
-    @media (min-width: 1280px) { 
-        gap: 8px; 
-    }
+    gap: 20px;
 }
 
 .formINPUT {
@@ -103,7 +75,7 @@
     padding-right: 1rem; 
     border-radius: 0.375rem; 
     border-width: 0; 
-    height: 69px;
+    height: 130px;
     box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color); 
     --tw-ring-inset: inset; 
     --ring-color: #bbbbbc; 
@@ -112,13 +84,6 @@
     background-color: #ffffff !important; 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
     border: 1px solid #CFD3D4;
-
-    @media (min-width: 640px) { 
-        font-size: 0.875rem;
-        line-height: 1.25rem; 
-        line-height: 1.5rem; 
-        height: 130px;
-    }
 }
 
 .select_container {
@@ -216,4 +181,8 @@
     @media (min-width: 768px) { 
     height: 34px;
     }
+  }
+
+  .noteText{
+    font-size: 12px;
   }

@@ -159,7 +159,7 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
                 )}
               </div>
             </div>
-
+            <label className={styles.labelHidden}>Notas adicionales</label>
             <div className="col-span-full mt-2">
               <div className="mt-5 ">
                 <textarea
