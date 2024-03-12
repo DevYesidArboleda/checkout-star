@@ -174,25 +174,25 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
 
   return (
     <div className={styles.containerPrincipalMobile}>
-      <div className="w-full px-12 pt-10 pb-9 bg-white border border-gray-200 rounded-lg">
-        <div className="flex flex-col pb-3 w-full border-b-1 border-[#D9D9D9] mb-3">
-          <span className="mb-3 font-light text-base text-[#53545C]">
+      <div className={styles.containerRound}>
+        <div className={styles.containerTextTotal}>
+          <span className={styles.textTotalTitle}>
             Valor total
           </span>
-          <span className="mb-3 font-semibold text-black text-base">
-            $ {dataFinal.price}
+          <span className={styles.dataPrice}>
+            $ {new Intl.NumberFormat().format(dataFinal.price)}
           </span>
         </div>
-        <div className="flex flex-col pb-3 w-full border-b-1 border-[#D9D9D9] mb-3">
-          <span className="mb-3 font-light text-base text-[#53545C]">
+        <div className={styles.containerTextTotal}>
+          <span className={styles.textTotalTitle}>
             Cantidad
           </span>
-          <div className="flex gap-4">
+          <div className={styles.containerQuantity}>
             {quantity === 1 ? (
-              <button className="text-[#53545C] w-3">-</button>
+              <button className={styles.quantityRest}>-</button>
             ) : (
               <button
-                className="text-[#53545C]"
+                className={styles.quantityRestON}
                 onClick={() => setQuantity((quantity) => quantity - 1)}
               >
                 -
@@ -200,126 +200,114 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
             )}
             <span className="text-black">{quantity}</span>
             <button
-              className="text-[#42E184]"
+              className={styles.quantitySum}
               onClick={() => setQuantity((quantity) => quantity + 1)}
             >
               +
             </button>
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="text-black ">
-            {dataFinal.attributes?.map((attribute: any, index: number) => (
-              <div key={attribute.id} className="flex flex-col">
-                <label
-                  htmlFor={attribute.description}
-                  className="mb-3 font-light text-base text-[#53545C]"
-                >{`Seleccionar ${attribute.description}:`}</label>
-                <select
-                  key={attribute.stock}
-                  id={attribute.description}
-                  className="rounded-medium bg-default-100  p-4 text-star appearance-none  transition duration-500 transform border-none focus:outline-none text-foreground-500 text-ellipsis text-sm font-light"
-                  onChange={(e) =>
-                    handleVariationChange(
-                      attribute.description,
-                      e.target.value,
-                      e.target.selectedOptions[0]?.getAttribute(
-                        "data-value-id"
-                      ) || ""
-                    )
-                  }
-                  onClick={() => setVaration(attribute.id)}
-                  value={selectedVariations[attribute.description] || ""}
-                >
-                  <option
-                    value=""
-                    disabled
-                    className="text-foreground-500 text-ellipsis text-sm font-light"
+        <div className={styles.box}>
+            <div className="text-black ">
+              {dataFinal.attributes?.map((attribute: any, index: number) => (
+                <div key={attribute.id} className={styles.containerMainSelect}>
+                  <label
+                    htmlFor={attribute.description}
+                    className={styles.containerLabel}
+                  >{`Seleccionar ${attribute.description}:`}</label>
+                  <select
+                    key={attribute.stock}
+                    id={attribute.description}
+                    className={styles.containerSelect}
+                    onChange={(e) =>
+                      handleVariationChange(
+                        attribute.description,
+                        e.target.value,
+                        e.target.selectedOptions[0]?.getAttribute(
+                          "data-value-id"
+                        ) || ""
+                      )
+                    }
+                    onClick={() => setVaration(attribute.id)}
+                    value={selectedVariations[attribute.description] || ""}
                   >
-                    Seleccionar ...
-                  </option>
-                  {attribute.values.map((value: any) => (
                     <option
-                      key={value.id}
-                      value={value.id}
-                      data-value-id={value.id}
-                      className="text-foreground-500 text-ellipsis text-small"
+                      value=""
+                      disabled
+                      className={styles.containerOption1}
                     >
-                      {value.value}
+                      Seleccionar ...
                     </option>
-                  ))}
-                </select>
-              </div>
-            ))}
+                    {attribute.values.map((value: any) => (
+                      <option
+                        key={value.id}
+                        value={value.id}
+                        data-value-id={value.id}
+                        className="text-foreground-500 text-ellipsis text-small"
+                      >
+                        {value.value}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ))}
 
-            {combinationUnavailable && (
-              <div className="text-red-500 pt-2">
-                <p>¡La combinación seleccionada no está disponible!</p>
-              </div>
-            )}
-
-            {/*existingVariationId && !combinationUnavailable && (
-                      <div>
-                        <h2>ID de la Variación Existente:</h2>
-                        <p>{existingVariationId}</p>
-                      </div>
-                    )*/}
-
-            {/* <div>
-                      <h2>Variaciones Seleccionadas:</h2>
-                      <pre>{JSON.stringify(selectedVariations, null, 2)}</pre>
-                    </div> */}
+              {combinationUnavailable && (
+                <div className={styles.popUpError}>
+                  <p>¡La combinación seleccionada no está disponible!</p>
+                </div>
+              )}              
+            </div>
           </div>
-        </div>
       </div>
 
-      <div className="flex flex-col px-12 w-full bg-white border border-gray-200 rounded-lg">
-        <div className="border-b-1 lg:border-[#D9D9D9] border-transparent w-full">
-          <h1 className="text-black font-bold text-base items-center flex justify-center py-6">
+      <div className={styles.containerRound}>
+        <div className={styles.containerRoundEnter}>
+          <h1 className="">
             Resumen
           </h1>
         </div>
-        <div className="border-b-1 border-[#D9D9D9] w-full">
-          <div className="flex justify-between">
-            <h1 className="my-4 text-xs text-[#53545C]  font-bold ">
+        <div className={styles.containerResume}>
+          <div className={styles.containerResumeCol}>
+            <h1 className="">
               Producto
             </h1>
             <br />
-            <h5 className="my-4 font-light text-[#53545C] text-xs">
+            <h5 className="">
               {dataFinal && dataFinal.name}
             </h5>
           </div>
         </div>
-        <div className="border-b-1 border-[#D9D9D9] w-full justify-between flex">
-          <span className="my-4 font-bold text-[#53545C] text-xs">
+        <div className={styles.containerResumeText}>
+          <h1 className="">
             Método de pago
-          </span>
-          <span className="my-4 font-light text-[#53545C] text-xs">
+          </h1>
+          <span className="">
             Paga al recibir
           </span>
         </div>
-        <div className="border-b-1 border-[#D9D9D9] w-full justify-between flex">
-          <span className="my-4 font-bold text-xs text-[#53545C] ">Envío</span>
-          <span className="my-4 font-bold 2xl:text-xl text-xs text-[#42E184] ">
+        <div className={styles.containerResumeText}>
+          <h1 className="">Envío</h1>
+          <span className={styles.freePrice}>
             GRATIS
           </span>
         </div>
-        <div className="border-b-1 border-[#D9D9D9] w-full flex justify-between">
-          <span className="my-4 font-bold text-xs text-[#53545C]">Color</span>
-          <span className="my-4 text-xs font-light tracking-tight text-[#53545C]">
+        <div className={styles.containerResumeText}>
+          <h1 className="">Color</h1>
+          <span className="">
             Por definir
           </span>
         </div>
-        <div className="border-b-1 border-[#D9D9D9] w-full flex justify-between">
-          <h1 className="my-4 font-bold text-xs text-[#53545C]">Tallas</h1>
-          <span className="my-4 text-xs font-light tracking-tight text-[#53545C]">
+        <div className={styles.containerResumeText}>
+          <h1 className="">Tallas</h1>
+          <span className="">
             {variation}
           </span>
         </div>
-        <div className="w-full flex justify-between pb-6">
-          <h1 className="my-4 font-bold text-base text-[#42E184]">Total</h1>
-          <span className="my-4 text-xs font-light tracking-tight text-[#53545C]">
-            {dataFinal && dataFinal.price*quantity}
+        <div className={styles.containerResumeText}>
+          <h1 className={styles.Total}>Total</h1>
+          <span className={styles.totalPrice}>
+           $ {dataFinal && new Intl.NumberFormat().format( dataFinal.price*quantity)}
           </span>
         </div>
       </div>

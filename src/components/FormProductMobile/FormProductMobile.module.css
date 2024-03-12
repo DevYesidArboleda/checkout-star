@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    gap: 12px ;
+    padding-bottom: 20px;
 }
 
 .containerFormPrincipal{
@@ -28,6 +30,88 @@
     color: #000000; 
     font-size: 20px;
     padding-top: 20px;
+}
+
+.containerRound{
+  padding-left: 3rem;
+  padding-right: 3rem; 
+  padding-bottom: 2.25rem; 
+  padding-top: 2.5rem; 
+  border-radius: 0.5rem; 
+  border-width: 1px; 
+  border-color: #E5E7EB; 
+  width: 100%; 
+  background-color: #ffffff; 
+}
+
+.containerRoundEnter {
+  width: 100%; 
+  border-bottom: 1px solid #E3E8EF6B ;
+  border-width: 1px;
+}
+
+.containerRoundEnter h1{
+  display: flex; 
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem; 
+  justify-content: center; 
+  align-items: center; 
+  font-size: 1rem;
+  line-height: 1.5rem; 
+  font-weight: 700; 
+  color: #000000; 
+}
+
+.containerTextTotal{
+  display: flex; 
+  padding-bottom: 0.75rem; 
+  margin-bottom: 0.75rem; 
+  flex-direction: column; 
+  width: 100%; 
+  border-bottom:1px solid #D9D9D9;
+}
+
+.textTotalTitle {
+  margin-bottom: 0.75rem; 
+  font-size: 1rem;
+  line-height: 1.5rem; 
+  font-weight: 300; 
+  color: #53545C;
+}
+
+.dataPrice{
+  margin-bottom: 0.75rem; 
+  font-size: 1rem;
+  line-height: 1.5rem; 
+  font-weight: 600; 
+  color: #000000; 
+}
+
+.containerQuantity{
+  display: flex; 
+  gap: 1rem; 
+}
+
+.quantityRest {
+  width: 0.75rem; 
+  color: #53545C;
+  border: 0;
+  background: transparent;
+  font-size: 17px;
+}
+
+.quantityRestON{
+  color: #53545C;
+  border: 0;
+  background: transparent;
+  font-size: 17px;
+}
+
+.quantitySum{
+  color: #42E184;
+  border: 0;
+  background: transparent;
+  font-size: 17px;
 }
 
 .containerForm {
@@ -185,4 +269,154 @@
 
   .noteText{
     font-size: 12px;
+  }
+  
+  .containerMainSelect{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%; 
+  }
+
+  .containerSelect{
+    padding: 1rem; 
+    border-style: none; 
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    font-weight: 300; 
+    text-overflow: ellipsis; 
+    width: 100%;
+    border: 1px solid #E3E8EF;
+    border-radius: 8px;
+    appearance: none;
+    background-image: url(../../../public/img/dropDown.svg); /* Reemplaza 'ruta-de-tu-imagen.png' con la ruta de tu imagen */
+    background-size: 12px; 
+    background-repeat: no-repeat;
+    background-position: right center ;
+    padding-right: 20px;
+    box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.2);
+    border-right: 12px solid transparent;
+  }
+
+  .containerLabel {
+    margin-bottom: 0.75rem; 
+    font-size: 1rem;
+    line-height: 1.5rem; 
+    font-weight: 300; 
+    color: #53545C;
+  }
+
+  .containerOption1 {
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    font-weight: 300; 
+    text-overflow: ellipsis; 
+  }
+
+  .containerOption1 {
+    text-overflow: ellipsis; 
+    font-size: 12px;
+  }
+
+  .buttonPopUp{
+    background: #42E184;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+  }
+
+  .popUpError{
+    padding-top: 0.5rem; 
+    color: #EF4444; 
+  }
+
+  .containerResume{
+    width: 100%; 
+    border-bottom:1px solid #E3E8EF6B;
+  }
+
+  .containerResumeCol {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+  }
+
+  .containerResumeCol h1{
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    font-size: 14px;
+    line-height: 1rem; 
+    font-weight: 700; 
+    color: #53545C;
+  }
+
+  .containerResumeCol h5{
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    font-size: 14px;
+    line-height: 1rem; 
+    font-weight: 300; 
+    color: #53545C;
+  }
+
+  .containerResumeText{
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%; 
+    border-bottom: 1px solid #E3E8EF6B;
+    align-items: center;
+  }
+
+  .containerRound:last-child{
+    border-bottom: none;
+  }
+
+  .containerResumeText h1{
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    font-size: 14px;
+    line-height: 1rem; 
+    font-weight: 700; 
+    color: #53545C;
+  }
+
+  .containerResumeText .Total{
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    font-size: 14px;
+    line-height: 1.5rem; 
+    font-weight: 700; 
+    color: #42E184;
+  }
+
+  .containerResumeText .totalPrice{
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    font-size: 14px;
+    line-height: 1.5rem; 
+    font-weight: 700; 
+    color: #000000;
+  }
+
+  .containerResumeText span{
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    font-size: 14px;
+    line-height: 1rem; 
+    font-weight: 300; 
+    letter-spacing: -0.025em; 
+    color: #53545C;
+  }
+  .containerResumeText .freePrice {
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    font-size: 14px;
+    line-height: 1rem; 
+    font-weight: 700; 
+    color: #42E184;
   }
