@@ -8,6 +8,7 @@ import { fetchCity, fetchDeparment } from "../utils/funtions";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./FormCatalogue.module.css";
 import FormInput from "../inputComponent/formInput";
+import { useAppSelector } from "@/store";
 
 interface FormularioPedidoProps {
   onSubmit: (data: any) => void;
@@ -22,6 +23,9 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
   const searchParams = useSearchParams();
   const user_id = searchParams.get("userID");
   const router = useRouter();
+
+  const addProduct = useAppSelector((state) => Object.values(state.catalogo));
+  console.log("catalogo",addProduct)
 
   const {
     register,
