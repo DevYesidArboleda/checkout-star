@@ -25,7 +25,7 @@ export default function Video ({ src, name, price, thumbnail }: VideoProps) {
         width="100%"
         height="100%"
         playing={isPlaying}
-        loop={false}
+        loop={true}
         muted={true}
         className={styles.wraperVideo}
         onReady={()=>console.log('is ready')
