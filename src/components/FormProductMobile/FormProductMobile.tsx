@@ -33,6 +33,7 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
   const [openError, setOpenError] = useState<boolean>(false);
   const product_id = searchParams.get("productID");
   const [quantity, setQuantity] = useState(1);
+  const [variation, setVaration] = useState("");
 
   const {
     register,
@@ -106,7 +107,7 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
 
   //Variaciones Mobile
   //Prueba variaciones
-  const [variation, setVaration] = useState("");
+  
   const [selectedVariations, setSelectedVariations] = useState<{
     [key: string]: string;
   }>({});

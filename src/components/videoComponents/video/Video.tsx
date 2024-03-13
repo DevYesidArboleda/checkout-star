@@ -16,8 +16,7 @@ export default function Video ({ src, name, price, thumbnail }: VideoProps) {
   const { isPlaying, videoRef } = useAutoPlay();
   const searchParams = useSearchParams();
   const product_id = searchParams.get("productID");
-  console.log(product_id)
-
+  
   return (
     <div className={styles.mainVideo}  style={product_id !=null ? { height: '100dvh' } : {}}>
       <div style={{ position: 'relative' }}>

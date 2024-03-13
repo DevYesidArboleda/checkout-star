@@ -185,18 +185,14 @@ export default function OnlyProductGrid({ catalog }: any) {
               </div>
             </div>
           </div>
-          <div className="w-full">
-            {allProduct.length !== 0 ? (
+          <div className="w-full">            
               <button
                 className={styles.nextShopButton}
                 type="button"
                 onClick={handleOpenModal}
               >
                 Continuar con la compra
-              </button>
-            ) : (
-              ""
-            )}
+              </button>           
           </div>
         </div>
       </div>
