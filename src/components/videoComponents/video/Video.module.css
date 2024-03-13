@@ -2,7 +2,7 @@
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    height: 100dvh; 
+    height: 100vh; 
     background-color: #000000; 
     scroll-snap-align: start; 
 }

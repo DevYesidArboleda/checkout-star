@@ -2,6 +2,7 @@ import ReactPlayer from "react-player";
 import styles from "./Video.module.css";
 import { useAutoPlay } from "@/hooks/useAutoPlay";
 import { useRef } from "react";
+import { useSearchParams } from "next/navigation";
 
 type VideoProps = {
   src: string,
@@ -13,8 +14,12 @@ type VideoProps = {
 export default function Video ({ src, name, price, thumbnail }: VideoProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { isPlaying, videoRef } = useAutoPlay();
+  const searchParams = useSearchParams();
+  const product_id = searchParams.get("productID");
+  console.log(product_id)
+
   return (
-    <div className={styles.mainVideo}>
+    <div className={styles.mainVideo}  style={product_id !=null ? { height: '100dvh' } : {}}>
       <div style={{ position: 'relative' }}>
       <ReactPlayer
        ref={(ref) => {
