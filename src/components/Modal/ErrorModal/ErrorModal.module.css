@@ -56,4 +56,6 @@
     line-height: 1.25rem; 
     color: #000000; 
     right: 0;
+    border: 0;
+    background-color: transparent;
 }

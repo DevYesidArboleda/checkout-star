@@ -33,7 +33,7 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
   const [openError, setOpenError] = useState<boolean>(false);
   const product_id = searchParams.get("productID");
   const [quantity, setQuantity] = useState(1);
-  const [variation, setVaration] = useState("");
+  const [variation, setVaration] = useState(0);
 
   const {
     register,
@@ -45,6 +45,8 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
   } = useForm<Inputs>({
     resolver: zodResolver(FormDataSchema),
   });
+  
+  console.log("Find existing", dataFinal)
 
   //Envio de formulario
   const processForm: SubmitHandler<Inputs> = async (data) => {
@@ -65,7 +67,6 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
       user_id,
       product_id,
       client_quantity,
-      //client_notes,
       variation_id,
     };
     try {
@@ -437,11 +438,11 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
         </form>
       </div>
       <ErrorModel isOpen={openError} onClose={() => setOpenError(false)}>
-        <div className="gap-2">
-          <div className="flex justify-center w-full gap-2">
+        <div className={styles.containerErrorModal}>
+          <div className="">
             <Image src="/img/task_alt.svg" alt="" width={32} height={32} />
           </div>
-          <span className="flex justify-center text-sm text-justify text-black p-4">
+          <span className={styles.textErrorModal}>
             {error}
           </span>
         </div>

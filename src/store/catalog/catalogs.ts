@@ -37,6 +37,7 @@ const catalogsSlices = createSlice({
     },
     resetCatalog(state) {
       // Reinicia el estado del catálogo
+      localStorage.clear()
       return {};
     },
   },

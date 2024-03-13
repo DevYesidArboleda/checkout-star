@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from "./counter/counterSlice"
 import catalogoReducer from "./catalog/catalogs"
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { localStorageMiddleware } from './middlewares/localstorage-middleware'
 
 export const store = configureStore({
   reducer: {
     count: counterReducer,
     catalogo: catalogoReducer
   },
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(localStorageMiddleware)
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

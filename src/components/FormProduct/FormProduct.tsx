@@ -226,14 +226,14 @@ const FormProduct: React.FC<FormularioPedidoProps> = ({ onSubmit, dataFinal  }) 
         </div>
       </form>
       <ErrorModel isOpen={openError} onClose={() => setOpenError(false)}>
-            <div className="gap-2">
-              <div className="flex justify-center w-full gap-2">
-                 <Image src="/img/task_alt.svg" alt="" width={32} height={32} /> 
-              </div>
-              <span className="flex justify-center text-sm text-justify text-black p-4">
-                {error}
-              </span>
-            </div>
+      <div className={styles.containerErrorModal}>
+          <div className="">
+            <Image src="/img/task_alt.svg" alt="" width={32} height={32} />
+          </div>
+          <span className={styles.textErrorModal}>
+            {error}
+          </span>
+        </div>
           </ErrorModel>
     </div>
   );

@@ -420,3 +420,21 @@
     font-weight: 700; 
     color: #42E184;
   }
+
+  .containerErrorModal{
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .textErrorModal{
+    display: flex; 
+    padding: 8px 16px 8px 16px;
+    justify-content: center; 
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    text-align: justify; 
+    color: #000000; 
+  }
