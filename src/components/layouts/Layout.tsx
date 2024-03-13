@@ -29,18 +29,11 @@ export const Layout: FC<Props> = ({ children, title, thumbnail, name }) => {
             <meta property="og:image" content={`${thumbnail}`} />
         </Head>       
 
-        <main style={{
-          minWidth: '100%',
-          minHeight: '100%',
-          padding: '0px',
-          margin: '0px',
-          width:"100vw",
-          height:"100vh"
-        }}>
+        < >
             <Providers>
               { children }
             </Providers>
-        </main>
+        </>
       
       </>
   )

@@ -8,7 +8,13 @@ const inter = Inter({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={inter.className}>
+    <main className={inter.className} style={{
+      minWidth: '100%',
+      padding: '0px',
+      margin: '0px',
+      width:"100vw",
+      height:"100dvh"
+    }}>
       <Component {...pageProps} />
     </main>
   );

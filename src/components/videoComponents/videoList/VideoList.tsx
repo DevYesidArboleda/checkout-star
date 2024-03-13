@@ -90,7 +90,7 @@ export default function VideoList() {
     <>
       {videos !== "false" ? (
         <>
-          <main className={styles.mainVideoList}>
+          <div className={styles.mainVideoList}>
             <section className={styles.sectionVideoList}>
               {!videos
                 ? "Loading..."
@@ -239,7 +239,7 @@ export default function VideoList() {
                     );
                   })}
             </section>
-          </main>
+          </div>
           <div className={styles.videoListProductGrid}>
             <ProductGrid catalog={addProduct} />
           </div>
