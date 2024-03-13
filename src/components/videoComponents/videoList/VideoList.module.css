@@ -6,6 +6,9 @@
   font-size: 0.75rem;
   line-height: 1rem;
   color: #ffffff;
+  @media (max-width: 425px) { 
+    min-width: 100vw;
+  }
 }
 
 .sectionVideoList {
@@ -245,8 +248,9 @@
   height: 56px;
   color: #53545C;
   max-width: 429px;
-
-  
+  @media (max-width: 425px) { 
+    max-width: auto;  
+  }
 }
 
 @keyframes pulse {

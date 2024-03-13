@@ -2,10 +2,13 @@
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    height: 100vh; 
+    height: 100%; 
     background-color: #000000; 
     scroll-snap-align: start; 
     max-width: 429px;
+    @media (max-width: 425px) { 
+      min-width: 100vw;
+    }
 }
 
 .wraperVideo video{
@@ -18,6 +21,11 @@
     position: relative;
     margin-left: 0;
     margin-right: 0;
+    @media (max-width: 425px) { 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 }
 
 .imageMain {
@@ -183,6 +191,9 @@
     height: 56px;
     color: #53545C;
     max-width: 429px;    
+    @media (max-width: 425px) { 
+      max-width: 100dvw;  
+    }
   }
 
   /* @keyframes pulse {
