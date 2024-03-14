@@ -17,10 +17,10 @@ const ModalCart: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-        initial={{ x: "100%", opacity: 0 } }
-        animate={ { x: 0, opacity: 1 } }
-        exit={{ x: "100%", opacity: 0 } }   // Establecer la opacidad en 0 al salir
-        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        // initial={{ x: "100%", opacity: 0 } }
+        // animate={ { x: 0, opacity: 1 } }
+        // exit={{ x: "100%", opacity: 0 } }   // Establecer la opacidad en 0 al salir
+        // transition={{ type: "spring", stiffness: 200, damping: 20 }}
         style={{
             position: "fixed",
             top: 0,
@@ -32,7 +32,7 @@ const ModalCart: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             alignItems: "start",
             justifyContent: "end",
             flexDirection: "column",
-            height:`${"100dvh"}`,
+            height:`${"100vh"}`,
             zIndex:40,
         }}
       >
@@ -40,16 +40,17 @@ const ModalCart: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             {/* <NavBar /> */}
           </div>
         <motion.div
-          initial={ { opacity: 0, x: 50 } }
-          animate={ { opacity: 1, x: 0 } }
-          exit={ { opacity: 0, x: 50 } }
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          // initial={ { opacity: 0, x: 50 } }
+          // animate={ { opacity: 1, x: 0 } }
+          // exit={ { opacity: 0, x: 50 } }
+          // transition={{ type: "spring", stiffness: 200, damping: 20 }}
           style={{
             background: `${"#E7ECEF"}`,
             padding: `${"16px"}`,
             borderRadius: "8px",
             width: `${"100%"}`,
-            height: "100dvh",
+            height: "100vh",
+            overflowY: "auto"
           }}
         >          
           <div className={`${style.mainContainerModal}`}>
