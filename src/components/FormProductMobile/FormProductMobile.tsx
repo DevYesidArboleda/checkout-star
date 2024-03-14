@@ -73,7 +73,7 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
       const response = await dataApi.post<any>("/orders/create-order", newData);
       console.log(response);
       console.log("Se creo la orden");
-      router.push(`/completePayCatalogue?userID=${user_id}`);
+      router.push(`/completePayProduct?userID=${user_id}`);
     } catch (error: any) {
       console.error("Error al enviar los datos:", error);
       console.log(error.response.data.stack.message);

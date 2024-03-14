@@ -115,7 +115,7 @@ export default function VideoList() {
                         <button
                           onClick={() =>
                             onToggle(
-                              video.externalId,
+                              video._id,
                               video.name,
                               video.description,
                               video.price,

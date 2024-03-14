@@ -22,7 +22,6 @@ const PopUpComponent: React.FC<PopupComponentProps> = ({
     onClose(); // Cierra el popup después de procesar la información
   };
 
-  console.log(" product ",finalData)
   // variaciones
   const [variation, setVaration] = useState("");
   const [selectedVariations, setSelectedVariations] = useState<{

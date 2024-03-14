@@ -14,11 +14,11 @@ interface Props {
 }
 
 export default function ProductGrid({ catalog }: Props) {
-  const allProduct = useAppSelector((state) => Object.values(state.catalogo));
+  const allProduct = useAppSelector((state) => Object.values(state.catalogo));  
   const addAll = allProduct.reduce(
     (total, elemento) => total + elemento.price * elemento.quantity,
     0
-  );
+  );  
 
   const dispatch = useDispatch();
 

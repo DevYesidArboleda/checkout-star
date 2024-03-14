@@ -1,6 +1,6 @@
 // FormularioPedido.tsx
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { FormDataSchema } from "../../../lib/schema";
@@ -9,6 +9,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./FormCatalogue.module.css";
 import FormInput from "../inputComponent/formInput";
 import { useAppSelector } from "@/store";
+import { dataApi } from "../../../api";
+import ErrorModel from "../Modal/ErrorModal/ErrorModal";
+import Image from 'next/image'
 
 interface FormularioPedidoProps {
   onSubmit: (data: any) => void;
@@ -22,7 +25,10 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
   const [cityid, setCityid] = useState(0);
   const searchParams = useSearchParams();
   const user_id = searchParams.get("userID");
+  const catalogue_id = searchParams.get("catalogueID");
   const router = useRouter();
+  const [error, setError] = useState("");
+  const [openError, setOpenError] = useState<boolean>(false);
 
   const addProduct = useAppSelector((state) => Object.values(state.catalogo));
   
@@ -35,10 +41,46 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
     resolver: zodResolver(FormDataSchema),
   });
 
-  const processForm = async (data: any) => {
-    // Tu lógica de procesamiento del formulario aquí
-    router.push(`/completePayCatalogue?userID=${user_id}`);
-    onSubmit(data);
+  const processForm: SubmitHandler<Inputs> = async (data) => {    
+    const dataClient: any = {
+      client_name: data.name,
+      client_direction: data.street,
+      department_id: data.department,
+      city_id: data.city,
+      client_surname: data.lastname,
+      client_phone: data.phone,
+      client_email: data.email,
+    };
+  
+    // State data
+    const productsDataFromState = addProduct.map((product: any) => ({
+      product_id: product.id, 
+      client_quantity: product.quantity,
+      variation_id: product.variation_id,
+    }));
+  
+    const newData = {
+      ...dataClient,
+      user_id,
+      client_notes: "", 
+      catalogue: {
+        id: catalogue_id, // ID del catálogo
+        products: productsDataFromState, // Array de productos
+      },
+    };
+    
+    try {
+      console.log(newData);
+      const response = await dataApi.post<any>("/orders/create-order", newData);
+      console.log(response);     
+      console.log("Se creó la orden");
+      router.push(`/completePayCatalogue?userID=${user_id}`);
+    } catch (error: any) {
+      console.error("Error al enviar los datos:", error);
+      console.log(error.response.data.stack.message);
+       setError(error.response.data.stack.message);
+       handleErrorModal();
+    }
   };
 
   useEffect(() => {
@@ -59,6 +101,10 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
       });
     }
   }, [cityid]);
+
+  const handleErrorModal = () => {
+    setOpenError(true);
+  };
 
  
 
@@ -185,6 +231,16 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
           </div>
         </div>
       </form>
+      <ErrorModel isOpen={openError} onClose={() => setOpenError(false)}>
+      <div className={styles.containerErrorModal}>
+          <div className="">
+            <Image src="/img/task_alt.svg" alt="" width={32} height={32} />
+          </div>
+          <span className={styles.textErrorModal}>
+            {error}
+          </span>
+        </div>
+          </ErrorModel>
     </div>
   );
 };

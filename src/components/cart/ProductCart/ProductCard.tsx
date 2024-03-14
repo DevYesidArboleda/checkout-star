@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function ProductCard(catalog: Props) {
-  const [cantidad, setCantidad] = useState(0);
+  const [cantidad, setCantidad] = useState(1);
   const dispatch = useAppDispatch();
   const [showPopup, setShowPopup] = useState(false);
   const [resultData, setResultData] = useState<any>("");
