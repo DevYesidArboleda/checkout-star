@@ -40,7 +40,8 @@ export default function VideoList() {
     quantity: number,
     thumbnail: string,
     variations: any,
-    attributes: any
+    attributes: any,
+    variation_id: string
   ) => {
     const catalog = {
       id,
@@ -51,6 +52,7 @@ export default function VideoList() {
       thumbnail,
       variations,
       attributes,
+      variation_id
     };
     console.log(catalog);
 
@@ -120,7 +122,8 @@ export default function VideoList() {
                               1,
                               video.thumbnail,
                               video.variations,
-                              video.attributes
+                              video.attributes,
+                              ""
                             )
                           }
                           className={styles.buttonAddList}
