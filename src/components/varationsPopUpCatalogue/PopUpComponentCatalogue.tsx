@@ -1,6 +1,6 @@
 
 import React, {  useState } from "react";
-import styles from "./PopUp.module.css";
+import styles from "./PopUpCatalogue.module.css";
 
 
 type PopupComponentProps = {
@@ -10,7 +10,7 @@ type PopupComponentProps = {
   finalData: any;
 };
 
-const PopUpComponent: React.FC<PopupComponentProps> = ({
+const PopUpComponentCatalogue: React.FC<PopupComponentProps> = ({
   isOpen,
   onClose,
   onSubmit,
@@ -21,8 +21,7 @@ const PopUpComponent: React.FC<PopupComponentProps> = ({
     onSubmit(variation);
     onClose(); // Cierra el popup después de procesar la información
   };
-
-  console.log(" product ",finalData)
+  
   // variaciones
   const [variation, setVaration] = useState("");
   const [selectedVariations, setSelectedVariations] = useState<{
@@ -157,4 +156,4 @@ const PopUpComponent: React.FC<PopupComponentProps> = ({
   );
 };
 
-export default PopUpComponent;
+export default PopUpComponentCatalogue;

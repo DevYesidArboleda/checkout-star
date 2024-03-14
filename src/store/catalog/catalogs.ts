@@ -40,9 +40,14 @@ const catalogsSlices = createSlice({
       localStorage.clear()
       return {};
     },
+    removeCatalogItem(state, action: PayloadAction<string>) {
+      const idToRemove = action.payload;
+      delete state[idToRemove];
+      localStorage.setItem("catalog", JSON.stringify(state));
+    },
   },
 });
 
-export const { toggleCatalog, resetCatalog } = catalogsSlices.actions;
+export const { toggleCatalog, resetCatalog, removeCatalogItem } = catalogsSlices.actions;
 
 export default catalogsSlices.reducer;

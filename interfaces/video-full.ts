@@ -40,6 +40,8 @@ export interface SimpleCatalog {
     price:        number;    
     thumbnail:    string;    
     variations:   Variation[];
+    attributes:   Attribute[];
+    variation_id: string;
 }
 
 export interface Catalog {

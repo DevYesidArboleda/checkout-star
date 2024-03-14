@@ -82,8 +82,6 @@ export default function Product(dataFinal: any) {
     });
   });
 
-  console.log("resultado de variaciones", attributeValues);
-
   const handleFormSubmit = (finalData: any) => {
     // Lógica de manejo de datos del formulario
     console.log("Datos del formulario:", finalData);

@@ -82,7 +82,7 @@ export default function ProductGrid({ catalog }: Props) {
                     alt=""
                     width={108}
                     height={95}
-                    className="lg:flex hidden"
+                    className=""
                   />
                   <span className={styles.emptycartText}>Carrito de compra vacío</span>
               </div>

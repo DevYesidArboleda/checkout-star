@@ -17,7 +17,7 @@ export default function OnlyProductGrid({ catalog }: any) {
   const [product, setProduct] = useState<any>([]);
   const [showPopup, setShowPopup] = useState(false);
   const [resultData, setResultData] = useState<any>(null);
-  console.log("aja", resultData)
+  
   useEffect(() => {
     const fetchData = async () => {
       const final: any = catalog.data;
@@ -74,10 +74,8 @@ export default function OnlyProductGrid({ catalog }: any) {
   const handlePopupSubmit = (data: any) => {
     // Recibe el resultado del popup 
     setResultData(data);
-    console.log("dataPoup", data)
   };
 
-  console.log("dataPopup", product)
   
   return (
     <>

@@ -25,7 +25,7 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
   const router = useRouter();
 
   const addProduct = useAppSelector((state) => Object.values(state.catalogo));
-  console.log("catalogo",addProduct)
+  
 
   const {
     register,

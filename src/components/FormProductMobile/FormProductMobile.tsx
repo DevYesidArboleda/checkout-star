@@ -46,7 +46,6 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
     resolver: zodResolver(FormDataSchema),
   });
   
-  console.log("Find existing", dataFinal)
 
   //Envio de formulario
   const processForm: SubmitHandler<Inputs> = async (data) => {
