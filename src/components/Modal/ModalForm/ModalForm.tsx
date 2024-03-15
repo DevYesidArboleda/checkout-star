@@ -17,10 +17,10 @@ const ModalForm: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-        initial={{ x: "100%", opacity: 0 }}  // Establecer la opacidad inicial en 0
-        animate={{ x: 0, opacity: 1 }}       // Establecer la opacidad en 1 al animar
-        exit={{ x: "100%", opacity: 0 }}     // Establecer la opacidad en 0 al salir
-        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        // initial={{ x: "100%", opacity: 0 }}  // Establecer la opacidad inicial en 0
+        // animate={{ x: 0, opacity: 1 }}       // Establecer la opacidad en 1 al animar
+        // exit={{ x: "100%", opacity: 0 }}     // Establecer la opacidad en 0 al salir
+        // transition={{ type: "spring", stiffness: 200, damping: 20 }}
         style={{
           position: "fixed",
           top: 0,
@@ -38,10 +38,10 @@ const ModalForm: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       >
         <button className={`${styles.buttonBack} ${windowSize.width <= 767 ? "": styles.buttonBackHidden }`}  onClick={onClose}><Image src="/img/backToPage.svg" alt="" width={20} height={20} /></button>
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 50 }}
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          // initial={{ opacity: 0, x: 50 }}
+          // animate={{ opacity: 1, x: 0 }}
+          // exit={{ opacity: 0, x: 50 }}
+          // transition={{ type: "spring", stiffness: 200, damping: 20 }}
           style={{
             background: "white",
             padding: `${windowSize.width <= 767 ? "16px": "10px 64px 50px 64px"}`,

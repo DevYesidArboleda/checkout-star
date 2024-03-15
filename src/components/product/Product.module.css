@@ -8,6 +8,7 @@
     max-width: 429px;
     @media (max-width: 425px) { 
       min-width: 100vw;
+      width: 100vw;
     }
 }
 
@@ -36,6 +37,9 @@
     width: 80%;
     max-height: 101px;
     height: 100%;
+    @media (max-width: 700px) { 
+      position: fixed;
+    }
   }
   
   .imageRounde {
@@ -61,6 +65,7 @@
     border-radius: 50%;
     border: 2px solid #42e184;
     height: 51px;
+    display: flex;
   }
   
   .imageCover {
@@ -109,9 +114,13 @@
     align-items: center;
     height: 4rem;
     cursor: pointer;
+    @media (max-width: 700px) { 
+      position: fixed;
+    }
   }
   
   .thumbnailRounde {
+    display: flex;
     border-width: 2px;
     border-style: solid;
     background: linear-gradient(white, white) padding-box,
@@ -180,6 +189,10 @@
     right: 0;
     background-color: transparent;
     border: 0;
+    @media (max-width: 700px) { 
+      position: fixed;
+      display: flex;
+    }
 }
 
 .buttonAddListProduct {

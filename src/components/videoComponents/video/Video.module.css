@@ -5,6 +5,7 @@
     height: 100vh; 
     background-color: #000000; 
     scroll-snap-align: start; 
+    width: 100%;
 }
 
 .wraperVideo video{

@@ -45,7 +45,6 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
   } = useForm<Inputs>({
     resolver: zodResolver(FormDataSchema),
   });
-  
 
   //Envio de formulario
   const processForm: SubmitHandler<Inputs> = async (data) => {
@@ -107,7 +106,7 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
 
   //Variaciones Mobile
   //Prueba variaciones
-  
+
   const [selectedVariations, setSelectedVariations] = useState<{
     [key: string]: string;
   }>({});
@@ -152,7 +151,7 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
     );
 
     if (attributeIndex !== undefined && dataFinal.attributes) {
-        dataFinal.attributes
+      dataFinal.attributes
         .slice(attributeIndex + 1)
         .forEach((attribute: any) => {
           setSelectedVariations((prevVariations) => ({
@@ -177,17 +176,13 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
     <div className={styles.containerPrincipalMobile}>
       <div className={styles.containerRound}>
         <div className={styles.containerTextTotal}>
-          <span className={styles.textTotalTitle}>
-            Valor total
-          </span>
+          <span className={styles.textTotalTitle}>Valor total</span>
           <span className={styles.dataPrice}>
             $ {new Intl.NumberFormat().format(dataFinal.price)}
           </span>
         </div>
         <div className={styles.containerTextTotal}>
-          <span className={styles.textTotalTitle}>
-            Cantidad
-          </span>
+          <span className={styles.textTotalTitle}>Cantidad</span>
           <div className={styles.containerQuantity}>
             {quantity === 1 ? (
               <button className={styles.quantityRest}>-</button>
@@ -199,7 +194,7 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
                 -
               </button>
             )}
-            <span className="text-black">{quantity}</span>
+            <span className={styles.quantityResult}>{quantity}</span>
             <button
               className={styles.quantitySum}
               onClick={() => setQuantity((quantity) => quantity + 1)}
@@ -209,114 +204,102 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
           </div>
         </div>
         <div className={styles.box}>
-            <div className="text-black ">
-              {dataFinal.attributes?.map((attribute: any, index: number) => (
-                <div key={attribute.id} className={styles.containerMainSelect}>
-                  <label
-                    htmlFor={attribute.description}
-                    className={styles.containerLabel}
-                  >{`Seleccionar ${attribute.description}:`}</label>
-                  <select
-                    key={attribute.stock}
-                    id={attribute.description}
-                    className={styles.containerSelect}
-                    onChange={(e) =>
-                      handleVariationChange(
-                        attribute.description,
-                        e.target.value,
-                        e.target.selectedOptions[0]?.getAttribute(
-                          "data-value-id"
-                        ) || ""
-                      )
-                    }
-                    onClick={() => setVaration(attribute.id)}
-                    value={selectedVariations[attribute.description] || ""}
-                  >
+          <div className="text-black ">
+            {dataFinal.attributes?.map((attribute: any, index: number) => (
+              <div key={attribute.id} className={styles.containerMainSelect}>
+                <label
+                  htmlFor={attribute.description}
+                  className={styles.containerLabel}
+                >{`Seleccionar ${attribute.description}:`}</label>
+                <select
+                  key={attribute.stock}
+                  id={attribute.description}
+                  className={styles.containerSelect}
+                  onChange={(e) =>
+                    handleVariationChange(
+                      attribute.description,
+                      e.target.value,
+                      e.target.selectedOptions[0]?.getAttribute(
+                        "data-value-id"
+                      ) || ""
+                    )
+                  }
+                  onClick={() => setVaration(attribute.id)}
+                  value={selectedVariations[attribute.description] || ""}
+                >
+                  <option value="" disabled className={styles.containerOption1}>
+                    Seleccionar ...
+                  </option>
+                  {attribute.values.map((value: any) => (
                     <option
-                      value=""
-                      disabled
-                      className={styles.containerOption1}
+                      key={value.id}
+                      value={value.id}
+                      data-value-id={value.id}
+                      className="text-foreground-500 text-ellipsis text-small"
                     >
-                      Seleccionar ...
+                      {value.value}
                     </option>
-                    {attribute.values.map((value: any) => (
-                      <option
-                        key={value.id}
-                        value={value.id}
-                        data-value-id={value.id}
-                        className="text-foreground-500 text-ellipsis text-small"
-                      >
-                        {value.value}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ))}
+                  ))}
+                </select>
+              </div>
+            ))}
 
-              {combinationUnavailable && (
-                <div className={styles.popUpError}>
-                  <p>¡La combinación seleccionada no está disponible!</p>
-                </div>
-              )}              
-            </div>
+            {combinationUnavailable && (
+              <div className={styles.popUpError}>
+                <p>¡La combinación seleccionada no está disponible!</p>
+              </div>
+            )}
           </div>
+        </div>
       </div>
 
       <div className={styles.containerRound}>
         <div className={styles.containerRoundEnter}>
-          <h1 className="">
-            Resumen
-          </h1>
+          <h1 className="">Resumen</h1>
         </div>
         <div className={styles.containerResume}>
           <div className={styles.containerResumeCol}>
-            <h1 className="">
-              Producto
-            </h1>
+            <h1 className="">Producto</h1>
             <br />
-            <h5 className="">
-              {dataFinal && dataFinal.name}
-            </h5>
+            <h5 className="">{dataFinal && dataFinal.name}</h5>
           </div>
         </div>
         <div className={styles.containerResumeText}>
-          <h1 className="">
-            Método de pago
-          </h1>
-          <span className="">
-            Paga al recibir
-          </span>
+          <h1 className="">Método de pago</h1>
+          <span className="">Paga al recibir</span>
         </div>
         <div className={styles.containerResumeText}>
           <h1 className="">Envío</h1>
-          <span className={styles.freePrice}>
-            GRATIS
-          </span>
+          <span className={styles.freePrice}>GRATIS</span>
         </div>
         <div className={styles.containerResumeText}>
           <h1 className="">Color</h1>
-          <span className="">
-            Por definir
-          </span>
+          <span className="">Por definir</span>
         </div>
         <div className={styles.containerResumeText}>
           <h1 className="">Tallas</h1>
-          <span className="">
-            {variation}
-          </span>
+          <span className="">{variation}</span>
         </div>
         <div className={styles.containerResumeText}>
           <h1 className={styles.Total}>Total</h1>
           <span className={styles.totalPrice}>
-           $ {dataFinal && new Intl.NumberFormat().format( dataFinal.price*quantity)}
+            ${" "}
+            {dataFinal &&
+              new Intl.NumberFormat().format(dataFinal.price * quantity)}
           </span>
         </div>
       </div>
 
-      {/* ... (resto del código del formulario) ... */}
-      <div className={styles.containerFormPrincipal}>
+      <button className={styles.buttonPageTo}>
+        <a
+          href="#page2" className={styles.scroll_link}
+        >
+          Continuar con la compra
+        </a>
+      </button>
+
+      <div id="page2" className={styles.containerFormPrincipal}>
         <form onSubmit={handleSubmit(processForm)}>
-          {/* ... (resto de tus campos de entrada) ... */}
           <div className={styles.mainProductForm}>
             <h2 className="">Ingresar Información</h2>
 
@@ -441,9 +424,7 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
           <div className="">
             <Image src="/img/task_alt.svg" alt="" width={32} height={32} />
           </div>
-          <span className={styles.textErrorModal}>
-            {error}
-          </span>
+          <span className={styles.textErrorModal}>{error}</span>
         </div>
       </ErrorModel>
     </div>

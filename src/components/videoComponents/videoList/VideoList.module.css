@@ -41,8 +41,8 @@
   max-height: 101px;
   height: 100%;
   @media (max-width: 400px) { 
-    bottom: 180px;
-}
+    bottom: 130px;
+  }
 }
 
 .imageRounde {
@@ -144,7 +144,7 @@
   background: transparent;
   margin-right: 8px;
   @media (max-width: 400px) { 
-    bottom: 165px;
+    bottom: 125px;
 }
 }
 
@@ -197,6 +197,10 @@
     @media (min-width: 768px) { 
         display: none; 
     }  
+}
+
+.cartBody.duplicate {
+  display: none;
 }
 
 .cartBodyText{
