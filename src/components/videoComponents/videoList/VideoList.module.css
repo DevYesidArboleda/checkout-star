@@ -41,7 +41,7 @@
   max-height: 101px;
   height: 100%;
   @media (max-width: 400px) { 
-    bottom: 130px;
+    bottom: 180px;
   }
 }
 
@@ -144,7 +144,7 @@
   background: transparent;
   margin-right: 8px;
   @media (max-width: 400px) { 
-    bottom: 125px;
+    bottom: 165px;
 }
 }
 
