@@ -32,8 +32,7 @@ export default function Video ({ src, name, price, thumbnail }: VideoProps) {
         loop={true}
         muted={true}
         className={styles.wraperVideo}
-        onReady={()=>console.log('is ready')
-        }
+        onReady={()=>console.log('is ready')}
       />
         {/* <video className={styles.wraperVideo} controls muted playsInline loop >
           <source src={src} type="video/mp4"></source>

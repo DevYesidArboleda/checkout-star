@@ -20,6 +20,7 @@ export default function VideoList() {
   const [videos, setVideos] = useState<any>();
   const searchParams = useSearchParams();
   const catalog_id = searchParams.get("catalogueID") || "";
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useAppDispatch();
 
@@ -30,6 +31,10 @@ export default function VideoList() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useGetFeedVideos(catalog_id).then((videos) => setVideos(videos));
   }, []);
+
+  const handleLoadedData = () => {
+    setLoading(false);
+  };
 
   //Agregar product
   const onToggle = (
