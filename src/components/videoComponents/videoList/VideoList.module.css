@@ -30,6 +30,7 @@
   flex-direction: row-reverse;
   align-items: center;
   max-width: 429px;
+  width: 100%;
 }
 
 .imageMain {
