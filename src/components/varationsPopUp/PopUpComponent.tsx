@@ -18,7 +18,7 @@ const PopUpComponent: React.FC<PopupComponentProps> = ({
 }) => {
 
   const handleSubmit = () => {    
-    onSubmit(variation);
+    onSubmit(existingVariationId);
     onClose(); // Cierra el popup después de procesar la información
   };
 

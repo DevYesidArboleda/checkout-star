@@ -64,7 +64,7 @@ const FormProduct: React.FC<FormularioPedidoProps> = ({ onSubmit, dataFinal  }) 
       variation_id,
     };
     try {
-      console.log(dataClient);
+      console.log("data enviada", newData);
       const response = await dataApi.post<any>("/orders/create-order", newData);
       console.log(response);     
       console.log("Se creo la orden");

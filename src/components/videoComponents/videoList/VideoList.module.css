@@ -290,12 +290,12 @@
 
 .messagePop{
   position: fixed;
-  top: 20px; /* Ajusta la distancia desde la parte superior según sea necesario */
+  top: 20px; 
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
-  background-color: #f8d7da; /* Color de fondo rojo claro, puedes ajustarlo según tu diseño */
-  color: #721c24; /* Color de texto oscuro */
+  background-color: #f8d7da; 
+  color: #721c24; 
   padding: 10px 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
