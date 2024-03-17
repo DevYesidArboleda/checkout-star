@@ -88,6 +88,7 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
   useEffect(() => {
     fetchDeparment().then((e) => {
       setDepartment(e);
+      setCityid(e[0]?.dropi_id)
     });
   }, []);
 

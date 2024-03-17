@@ -36,6 +36,23 @@ export default function VideoList() {
     setLoading(false);
   };
 
+  const [message, setMessage] = useState<string>('');
+
+  useEffect(() => {
+    if (message) {
+      // Muestra el mensaje durante 3 segundos
+      const timer = setTimeout(() => {
+        setMessage('');
+      }, 3000);
+
+      return () => clearTimeout(timer); // Limpia el temporizador al desmontar el componente
+    }
+  }, [message]);
+
+  const showMessage = (msg: string) => {
+    setMessage(msg);
+  };
+
   //Agregar product
   const onToggle = (
     id: string,
@@ -63,6 +80,7 @@ export default function VideoList() {
 
     if (addProduct.some((pos) => pos.id === id)) {
       console.log("La posicion ya existe", id);
+      showMessage('Este producto ya fue agregado al carrito');
     } else {
       dispatch(toggleCatalog(catalog));
     }
@@ -207,6 +225,8 @@ export default function VideoList() {
                             </div>
                           </div>
                         </div>
+
+                        {message && <p className={styles.messagePop}>{message}</p>}
 
                         {/* <button
                           className="right-0 text-white absolute bottom-[220px] mb-6 mr-4"

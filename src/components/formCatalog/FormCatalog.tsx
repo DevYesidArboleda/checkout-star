@@ -86,8 +86,12 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
   useEffect(() => {
     fetchDeparment().then((e) => {
       setDepartment(e);
+      setCityid(e[0]?.dropi_id)
     });
+    
   }, []);
+
+  
 
   const handleInputDeparment = (e: any) => {
     let index = e.target.selectedIndex;
@@ -106,7 +110,7 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
     setOpenError(true);
   };
 
- 
+  console.log("city", cityid)
 
   return (
     <div className="">

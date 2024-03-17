@@ -84,6 +84,7 @@ const FormProduct: React.FC<FormularioPedidoProps> = ({ onSubmit, dataFinal  }) 
   useEffect(() => {
     fetchDeparment().then((e) => {
       setDepartment(e);
+      setCityid(e[0]?.dropi_id)
     });
   }, []);
 

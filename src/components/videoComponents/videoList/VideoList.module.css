@@ -17,9 +17,8 @@
   top: 0;
   right: 0;
   left: 0;
-  padding-bottom: 3.5rem;
   flex-direction: column;
-  height: 100%;
+  height: 100dvh;
   scroll-snap-type: y var(--tw-scroll-snap-strictness);
   --tw-scroll-snap-strictness: mandatory;
 }
@@ -287,4 +286,21 @@
   @media (max-width: 380px) { 
     font-size: 16px;
   }
+}
+
+.messagePop{
+  position: fixed;
+  top: 20px; /* Ajusta la distancia desde la parte superior según sea necesario */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background-color: #f8d7da; /* Color de fondo rojo claro, puedes ajustarlo según tu diseño */
+  color: #721c24; /* Color de texto oscuro */
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
