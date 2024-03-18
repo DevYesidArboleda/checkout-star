@@ -19,7 +19,7 @@ export default function Video ({ src, name, price, thumbnail }: VideoProps) {
   
   return (
     <div className={styles.mainVideo}  style={product_id !=null ? { height: '100dvh' } : {}}>
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'relative'}}>
       <ReactPlayer
        ref={(ref) => {
         videoRef.current = ref;

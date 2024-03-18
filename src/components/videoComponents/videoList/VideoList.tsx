@@ -113,12 +113,58 @@ export default function VideoList() {
     console.log("Datos del formulario:", data);
   };
 
+   //metodo para scroll
+   const videoContainerRef = useRef<HTMLDivElement>(null);
+   const [currentIndex, setCurrentIndex] = useState<number>(0);
+   
+   const handleScroll = () => {
+    if (videoContainerRef.current) {
+      const container = videoContainerRef.current;
+      const scrollPosition = container.scrollTop;
+      const videoHeight = container.clientHeight;
+      const newCurrentIndex = Math.round(scrollPosition / videoHeight);
+  
+      setCurrentIndex(newCurrentIndex);
+    }
+  };
+  
+  useEffect(() => {
+    if (videoContainerRef.current) {
+      videoContainerRef.current.addEventListener("scroll", handleScroll);
+      return () => {
+        if (videoContainerRef.current) {
+          videoContainerRef.current.removeEventListener("scroll", handleScroll);
+        }
+      };
+    }
+  }, []);
+  
+  const handleButtonClick = (direction: "up" | "down") => {
+    let newIndex;
+    if (direction === "up") {
+      newIndex = currentIndex - 1;
+      if (newIndex < 0) return; // Evitar desplazamiento negativo
+    } else {
+      newIndex = currentIndex + 1;
+      if (newIndex >= videos.length) return; // Evitar desplazamiento más allá del último video
+    }
+  
+    setCurrentIndex(newIndex);
+  
+    if (videoContainerRef.current) {
+      const targetVideo = videoContainerRef.current.children[newIndex] as HTMLDivElement | undefined;
+      if (targetVideo) {
+        targetVideo.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
   return (
     <>
       {videos !== "false" ? (
         <>
           <div className={styles.mainVideoList}>
-            <section className={styles.sectionVideoList}>
+            <section className={styles.sectionVideoList} ref={videoContainerRef}>
               {!videos
                 ? "Loading..."
                 : // @ts-ignore
@@ -227,6 +273,35 @@ export default function VideoList() {
                         </div>
 
                         {message && <p className={styles.messagePop}>{message}</p>}
+
+                        <div className={styles.containerButtonScroll}>
+                        <button
+                          onClick={() => handleButtonClick("up")}
+                          disabled={currentIndex === 0}
+                          className={`${styles.buttonUp} ${currentIndex === 0 ? styles.buttonUpHidden : ""}`}
+                        >
+                          <Image
+                            src="/img/ScrollUp.svg"
+                            alt=""
+                            width={32}
+                            height={32}
+                          />
+                        </button>
+
+                        <button
+                          onClick={() => handleButtonClick("down")}
+                          disabled={currentIndex === videos.length - 1}
+                          className={styles.buttonDown}
+                        >
+                          <Image
+                            src="/img/ScrollUp.svg"
+                            alt=""
+                            width={32}
+                            height={32}
+                            className={`${styles.buttonDownImage} ${currentIndex === videos.length - 1 ? styles.buttonDownHidden : ""}`}
+                          />
+                        </button>
+                        </div>
 
                         {/* <button
                           className="right-0 text-white absolute bottom-[220px] mb-6 mr-4"

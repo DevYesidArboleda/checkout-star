@@ -304,3 +304,40 @@
   align-items: center;
   text-align: center;
 }
+
+.containerButtonScroll{
+  top: 180px;
+}
+
+.buttonUp {
+  position: absolute; 
+  right: 0; 
+  margin-right: 1rem; 
+  margin-bottom: 3rem; 
+  cursor: pointer; 
+  border: 0;
+  background: transparent;
+}
+
+.buttonUpHidden {
+  display: none;
+}
+
+
+.buttonDown {
+  position: absolute; 
+  right: 0; 
+  margin-right: 1rem; 
+  margin-top: 3.5rem; 
+  cursor: pointer; 
+  border: 0;
+  background: transparent;
+}
+
+.buttonDownImage {
+  transform: rotate(180deg);
+}
+
+.buttonDownHidden {
+  display: none;
+}

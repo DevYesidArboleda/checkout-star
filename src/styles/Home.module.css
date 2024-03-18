@@ -234,3 +234,10 @@
   gap: 1.5rem; 
   justify-content: center; 
 }
+
+.containerHeaderVideo {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
