@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import styles from "./header.module.css";
+import styles from "./HeaderComponent.module.css";
 
 const HeaderComponent: React.FC = () => {
   return (
