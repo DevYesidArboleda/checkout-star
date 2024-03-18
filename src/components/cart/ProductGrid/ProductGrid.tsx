@@ -8,6 +8,8 @@ import Image from "next/image";
 import styles from "./ProdutcGrid.module.css";
 import ModalForm from "@/components/Modal/ModalForm/ModalForm";
 import FormCatalog from "@/components/formCatalog/FormCatalog";
+import ModalCartResumen from "@/components/Modal/ModalCartResumen/ModalCartResumen";
+import { ResumenCatalogue } from "../ResumeCatalogue/ResumenCatalogue";
 
 interface Props {
   catalog: SimpleCatalog[];
@@ -34,6 +36,17 @@ export default function ProductGrid({ catalog }: Props) {
   };
 
   const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  //carrito abrir y cerrar mobile
+  const [isModalOpenMobile, setIsModalOpenMobile] = useState(false);
+
+  const handleOpenModalMobile = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModalMobile = () => {
     setIsModalOpen(false);
   };
 
@@ -128,6 +141,9 @@ export default function ProductGrid({ catalog }: Props) {
       <ModalForm isOpen={isModalOpen} onClose={handleCloseModal}>
               <FormCatalog onSubmit={handleFormSubmit} />
       </ModalForm> 
+      <ModalCartResumen isOpen={isModalOpenMobile} onClose={handleCloseModalMobile}>
+              <ResumenCatalogue />
+      </ModalCartResumen> 
     </>
   );
 }
