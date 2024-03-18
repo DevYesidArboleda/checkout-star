@@ -14,13 +14,9 @@ const ModalCart: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
-        <motion.div
-        // initial={{ x: "100%", opacity: 0 } }
-        // animate={ { x: 0, opacity: 1 } }
-        // exit={{ x: "100%", opacity: 0 } }   // Establecer la opacidad en 0 al salir
-        // transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        <div
         style={{
             position: "fixed",
             top: 0,
@@ -39,11 +35,7 @@ const ModalCart: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         <div className={`""flex w-full h-9""`}>
             {/* <NavBar /> */}
           </div>
-        <motion.div
-          // initial={ { opacity: 0, x: 50 } }
-          // animate={ { opacity: 1, x: 0 } }
-          // exit={ { opacity: 0, x: 50 } }
-          // transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        <div
           style={{
             background: `${"#E7ECEF"}`,
             padding: `${"16px"}`,
@@ -58,10 +50,10 @@ const ModalCart: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             <span className= {`${""}`}>Carrito de compra</span>
           </div>
           {children}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
       )}
-    </AnimatePresence>
+    </>
   );
 };
 

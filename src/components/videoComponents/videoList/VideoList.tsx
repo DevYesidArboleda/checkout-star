@@ -15,10 +15,12 @@ import ProductGrid from "@/components/cart/ProductGrid/ProductGrid";
 import ModalForm from "@/components/Modal/ModalForm/ModalForm";
 import FormCatalog from "@/components/formCatalog/FormCatalog";
 import ModalCart from "@/components/Modal/ModalCart/ModalCart";
+import router from "next/router";
 
 export default function VideoList() {
   const [videos, setVideos] = useState<any>();
   const searchParams = useSearchParams();
+  const user_id = searchParams.get("userID");
   const catalog_id = searchParams.get("catalogueID") || "";
   const [loading, setLoading] = useState(true);
 
@@ -95,6 +97,11 @@ export default function VideoList() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  //llevar al carrito mobile
+  const handleNextCartMobile = () => {
+    router.push(`/cartMobile?userID=${user_id}&catalogueID=${catalog_id}`)
   };
 
   //carrito abrir y cerrar carrito

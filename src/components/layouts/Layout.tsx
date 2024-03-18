@@ -27,6 +27,7 @@ export const Layout: FC<Props> = ({ children, title, thumbnail, name }) => {
             <meta property="og:title" content={ `${name}`} />
             <meta property="og:description" content="Checkout para procesar la orden de tus productos" />
             <meta property="og:image" content={`${thumbnail}`} />
+            <meta name="viewport" content="width=device-width, user-scalable=no"></meta>
         </Head>       
 
         < >
