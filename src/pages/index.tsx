@@ -9,7 +9,7 @@ import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import VideoList from "@/components/videoComponents/videoList/VideoList";
 import Product from "@/components/product/Product";
-import Header from "@/components/header/Header";
+import HeaderC from "@/components/header/HeaderComponent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <Layout title="Checkout Estrellas" thumbnail={''} name={''}>
       <div className={styles.containerHeaderVideo}>
-      {/* <Header/> */}
+       <HeaderC/> 
           {(product_id || catalog_id) && validPage && <div className={styles.mainProduct} > <Product data={dataFinal} /> </div>}
           {catalog_id && (
             <div className={styles.videoListHome}>

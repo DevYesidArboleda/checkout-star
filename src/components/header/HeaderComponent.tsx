@@ -2,15 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./header.module.css";
 
-const Header: React.FC = () => {
+const HeaderComponent: React.FC = () => {
   return (
-    <header className={styles.headerContainer}>
+    <div className={styles.headerContainer}>
       <div className={styles.containerContent}>
       <Image
         src="/img/logoStar.svg"
         alt="Logo Star"
-        width={64}
-        height={64}
+        width={30}
+        height={30}
         // style={{
         //   width: "100%",
         //   height: "auto",
@@ -23,8 +23,8 @@ const Header: React.FC = () => {
         </span>
       </div>
       </div>
-    </header>
+    </div>
   );
 };
 
-export default Header;
+export default HeaderComponent;

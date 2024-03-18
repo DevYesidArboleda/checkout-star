@@ -341,3 +341,11 @@
 .buttonDownHidden {
   display: none;
 }
+
+.containerTest{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+}
