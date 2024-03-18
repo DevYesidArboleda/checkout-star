@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { useAppSelector } from "@/store";
 import ProductCardPay from "../productCartPay/ProductCardPay";
 import styles from "./PayCatalog.module.css"
+import HeaderSub from "@/components/header/HeaderSub";
 
 export const PayCatalog = () => {
   const searchParams = useSearchParams();
@@ -18,6 +19,8 @@ export const PayCatalog = () => {
   );
 
   return (
+    <>
+    <HeaderSub/>
     <div className={styles.mainPayCatalogue}>
       <div className={styles.containerPayCatalogue}>
         <div className="">
@@ -71,5 +74,6 @@ export const PayCatalog = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };

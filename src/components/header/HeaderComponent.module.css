@@ -12,6 +12,17 @@
     }
   }
 
+  .headerContainerSub{
+    display: flex;
+    align-items: center;
+    height: 38px;
+    padding: 0 20px;
+    background-color: #ffffff;
+    justify-content: center;
+    width: 100%;
+    z-index: 1;
+  }
+
   .textheader{
     display: flex; 
     font-size: 1rem;

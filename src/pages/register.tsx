@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { dataApi } from "../../api";
 import UserModal from "@/components/Modal/userModal/UserModal";
 import styles from "@/styles/registerPage.module.css";
+import HeaderSub from "@/components/header/HeaderSub";
 
 interface FormularioProps {}
 
@@ -64,6 +65,7 @@ const Register: FC<FormularioProps> = () => {
 
   return (
     <Layout title="Checkout Estrellas">
+      <HeaderSub/>
       <>
         <form onSubmit={onSubmit}>
           <div

@@ -21,3 +21,8 @@
     border: 0;
     background: transparent;
 }
+
+.containerMain{
+    display: flex;
+    width: 100%;
+}

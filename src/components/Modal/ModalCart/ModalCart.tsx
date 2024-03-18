@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ReactNode } from "react";
 import Image from "next/image";
 import style from "./ModalCart.module.css"
+import HeaderSub from "@/components/header/HeaderSub";
 //import { NavBar } from "../ui";
 
 interface ModalProps {
@@ -32,8 +33,8 @@ const ModalCart: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             zIndex:40,
         }}
       >
-        <div className={`""flex w-full h-9""`}>
-            {/* <NavBar /> */}
+        <div className={style.containerMain}>            
+          <HeaderSub/>  
           </div>
         <div
           style={{
@@ -44,7 +45,7 @@ const ModalCart: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             height: "100vh",
             overflowY: "auto"
           }}
-        >          
+        >         
           <div className={`${style.mainContainerModal}`}>
             <button onClick={onClose}><Image src={`${ "/img/backToPage.svg"}`} alt="" width={20} height={20}  /></button>
             <span className= {`${""}`}>Carrito de compra</span>

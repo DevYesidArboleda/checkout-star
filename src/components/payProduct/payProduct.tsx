@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./payProduct.module.css"
 import { useSearchParams } from "next/navigation";
+import HeaderSub from "../header/HeaderSub";
 
 export const PayProduct = () => {
   const searchParams = useSearchParams();
@@ -12,6 +13,8 @@ export const PayProduct = () => {
 
 
   return (
+    <>
+    <HeaderSub/>
     <div className={styles.mainPayCatalogue}>
       <div className={styles.containerPayCatalogue}>
         <div className="">
@@ -46,5 +49,6 @@ export const PayProduct = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };

@@ -182,6 +182,12 @@ export default function VideoList() {
                         key={index}
                         style={{ scrollSnapAlign: "start" }}
                       >
+                        {/* {!isModalOpenCart && <Video
+                          src={video.videoUrl}
+                          name={video.name}
+                          price={video.price}
+                          thumbnail={video.thumbnai}
+                        /> } */}
                         <Video
                           src={video.videoUrl}
                           name={video.name}
