@@ -306,7 +306,7 @@
 }
 
 .containerButtonScroll{
-  top: 180px;
+  top: 180px;  
 }
 
 .buttonUp {
@@ -317,6 +317,9 @@
   cursor: pointer; 
   border: 0;
   background: transparent;
+  @media screen and (max-width: 400px) { 
+    top: 280px; 
+  }
 }
 
 .buttonUpHidden {
@@ -332,6 +335,9 @@
   cursor: pointer; 
   border: 0;
   background: transparent;
+  @media screen and (max-width: 400px) { 
+    top: 280px; 
+  }
 }
 
 .buttonDownImage {
@@ -348,4 +354,44 @@
   align-items: flex-start;
   width: 100%;
   gap: 20px;
+}
+
+.imageInfo{
+  position: absolute; 
+  margin-right: 10px; 
+  margin-bottom: 0; 
+  color: #ffffff; 
+  bottom: 270px;
+  right: 0;
+  background-color: transparent;
+  border: 0;
+  @media (max-width: 700px) { 
+    display: flex;
+  }
+}
+
+.ModalInfo{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 20px;
+  color: black;
+}
+
+.ModalInfo h1 {
+  font-size: 16px;
+  line-height: 2rem; 
+  font-weight: 600; 
+  @media (max-width: 380px) { 
+    font-size: 16px;
+  }
+}
+
+.ModalInfo span {
+  font-size: 16px;
+  line-height: 2rem; 
+  font-weight: 400; 
+  @media (max-width: 380px) { 
+    font-size: 16px;
+  }
 }

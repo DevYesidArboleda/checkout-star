@@ -16,6 +16,10 @@ import ModalForm from "@/components/Modal/ModalForm/ModalForm";
 import FormCatalog from "@/components/formCatalog/FormCatalog";
 import ModalCart from "@/components/Modal/ModalCart/ModalCart";
 import router from "next/router";
+import ModalCartResumen from "@/components/Modal/ModalCartResumen/ModalCartResumen";
+import { ResumenCatalogue } from "@/components/cart/ResumeCatalogue/ResumenCatalogue";
+import { UseWindowSize } from "@/hooks/UseWindowSize";
+import Modal from "@/components/Modal/ModalInfo/Modal";
 
 export default function VideoList() {
   const [videos, setVideos] = useState<any>();
@@ -23,7 +27,7 @@ export default function VideoList() {
   const user_id = searchParams.get("userID");
   const catalog_id = searchParams.get("catalogueID") || "";
   const [loading, setLoading] = useState(true);
-
+  const windowSize = UseWindowSize();
   const dispatch = useAppDispatch();
 
   const addProduct = useAppSelector((state) => Object.values(state.catalogo));
@@ -38,13 +42,13 @@ export default function VideoList() {
     setLoading(false);
   };
 
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     if (message) {
       // Muestra el mensaje durante 3 segundos
       const timer = setTimeout(() => {
-        setMessage('');
+        setMessage("");
       }, 3000);
 
       return () => clearTimeout(timer); // Limpia el temporizador al desmontar el componente
@@ -76,13 +80,13 @@ export default function VideoList() {
       thumbnail,
       variations,
       attributes,
-      variation_id
+      variation_id,
     };
     console.log(catalog);
 
     if (addProduct.some((pos) => pos.id === id)) {
       console.log("La posicion ya existe", id);
-      showMessage('Este producto ya fue agregado al carrito');
+      showMessage("Este producto ya fue agregado al carrito");
     } else {
       dispatch(toggleCatalog(catalog));
     }
@@ -101,7 +105,7 @@ export default function VideoList() {
 
   //llevar al carrito mobile
   const handleNextCartMobile = () => {
-    router.push(`/cartMobile?userID=${user_id}&catalogueID=${catalog_id}`)
+    router.push(`/cartMobile?userID=${user_id}&catalogueID=${catalog_id}`);
   };
 
   //carrito abrir y cerrar carrito
@@ -120,21 +124,46 @@ export default function VideoList() {
     console.log("Datos del formulario:", data);
   };
 
-   //metodo para scroll
-   const videoContainerRef = useRef<HTMLDivElement>(null);
-   const [currentIndex, setCurrentIndex] = useState<number>(0);
-   
-   const handleScroll = () => {
+  //carrito abrir y cerrar mobile
+  const [isModalOpenMobile, setIsModalOpenMobile] = useState(false);
+
+  const handleOpenModalMobile = () => {
+    setIsModalOpenMobile(true);
+  };
+
+  const handleCloseModalMobile = () => {
+    setIsModalOpenMobile(false);
+  };
+
+  //carrito abrir y cerrar info Modal
+  const [isModalOpenInfo, setIsModalOpenInfo] = useState(false);
+  const [selectedVideoIndex, setSelectedVideoIndex] = useState(null);
+
+  const handleOpenModalInfo = (index:any) => {
+    setSelectedVideoIndex(index);
+    setIsModalOpenInfo(true);
+  };
+
+  const handleCloseModalInfo = () => {
+    setIsModalOpenInfo(false);
+    setSelectedVideoIndex(null);
+  };
+
+  //metodo para scroll
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  const handleScroll = () => {
     if (videoContainerRef.current) {
       const container = videoContainerRef.current;
       const scrollPosition = container.scrollTop;
       const videoHeight = container.clientHeight;
       const newCurrentIndex = Math.round(scrollPosition / videoHeight);
-  
+
       setCurrentIndex(newCurrentIndex);
     }
   };
-  
+
   useEffect(() => {
     if (videoContainerRef.current) {
       videoContainerRef.current.addEventListener("scroll", handleScroll);
@@ -145,7 +174,7 @@ export default function VideoList() {
       };
     }
   }, []);
-  
+
   const handleButtonClick = (direction: "up" | "down") => {
     let newIndex;
     if (direction === "up") {
@@ -155,11 +184,13 @@ export default function VideoList() {
       newIndex = currentIndex + 1;
       if (newIndex >= videos.length) return; // Evitar desplazamiento más allá del último video
     }
-  
+
     setCurrentIndex(newIndex);
-  
+
     if (videoContainerRef.current) {
-      const targetVideo = videoContainerRef.current.children[newIndex] as HTMLDivElement | undefined;
+      const targetVideo = videoContainerRef.current.children[newIndex] as
+        | HTMLDivElement
+        | undefined;
       if (targetVideo) {
         targetVideo.scrollIntoView({ behavior: "smooth", block: "start" });
       }
@@ -171,7 +202,10 @@ export default function VideoList() {
       {videos !== "false" ? (
         <>
           <div className={styles.mainVideoList}>
-            <section className={styles.sectionVideoList} ref={videoContainerRef}>
+            <section
+              className={styles.sectionVideoList}
+              ref={videoContainerRef}
+            >
               {!videos
                 ? "Loading..."
                 : // @ts-ignore
@@ -216,8 +250,22 @@ export default function VideoList() {
                           </span>
                         </button>
 
-                        <div className={styles.cartBody}
-                          onClick={handleOpenModalCart}>
+                        <button
+                          onClick={() => handleOpenModalInfo(index)}
+                          className={styles.imageInfo}
+                        >
+                          <Image
+                            src="/img/infoProduct.svg"
+                            alt=""
+                            width={50}
+                            height={50}
+                          />
+                        </button>
+
+                        <div
+                          className={styles.cartBody}
+                          onClick={handleOpenModalCart}
+                        >
                           <Image
                             src="/img/cart.svg"
                             alt=""
@@ -229,8 +277,10 @@ export default function VideoList() {
                           </span>
                         </div>
 
-                        <ModalCart isOpen={isModalOpenCart}
-                          onClose={handleCloseModalCart}>
+                        <ModalCart
+                          isOpen={isModalOpenCart}
+                          onClose={handleCloseModalCart}
+                        >
                           <div className={styles.modalProductGrid}>
                             <ProductGrid catalog={addProduct} />
                           </div>
@@ -285,66 +335,53 @@ export default function VideoList() {
                           </div>
                         </div>
 
-                        {message && <p className={styles.messagePop}>{message}</p>}
+                        {message && (
+                          <p className={styles.messagePop}>{message}</p>
+                        )}
 
                         <div className={styles.containerButtonScroll}>
-                        <button
-                          onClick={() => handleButtonClick("up")}
-                          disabled={currentIndex === 0}
-                          className={`${styles.buttonUp} ${currentIndex === 0 ? styles.buttonUpHidden : ""}`}
-                        >
-                          <Image
-                            src="/img/ScrollUp.svg"
-                            alt=""
-                            width={32}
-                            height={32}
-                          />
-                        </button>
+                          <button
+                            onClick={() => handleButtonClick("up")}
+                            disabled={currentIndex === 0}
+                            className={`${styles.buttonUp} ${
+                              currentIndex === 0 ? styles.buttonUpHidden : ""
+                            }`}
+                          >
+                            <Image
+                              src="/img/ScrollUp.svg"
+                              alt=""
+                              width={32}
+                              height={32}
+                            />
+                          </button>
 
-                        <button
-                          onClick={() => handleButtonClick("down")}
-                          disabled={currentIndex === videos.length - 1}
-                          className={styles.buttonDown}
-                        >
-                          <Image
-                            src="/img/ScrollUp.svg"
-                            alt=""
-                            width={32}
-                            height={32}
-                            className={`${styles.buttonDownImage} ${currentIndex === videos.length - 1 ? styles.buttonDownHidden : ""}`}
-                          />
-                        </button>
+                          <button
+                            onClick={() => handleButtonClick("down")}
+                            disabled={currentIndex === videos.length - 1}
+                            className={styles.buttonDown}
+                          >
+                            <Image
+                              src="/img/ScrollUp.svg"
+                              alt=""
+                              width={32}
+                              height={32}
+                              className={`${styles.buttonDownImage} ${
+                                currentIndex === videos.length - 1
+                                  ? styles.buttonDownHidden
+                                  : ""
+                              }`}
+                            />
+                          </button>
                         </div>
-
-                        {/* <button
-                          className="right-0 text-white absolute bottom-[220px] mb-6 mr-4"
-                        >
-                          <Image
-                            src="/img/infoProduct.png"
-                            alt=""
-                            width={32}
-                            height={32}
-                          />
-                        </button> */}
-
-                        {/* <Modal
-                          isOpen={openModal}
-                          onClose={handleCloseModalInfo}
-                        >
-                          <div className="flex flex-col mt-[-20px] z-[1]">
-                            <span className="text-base font-bold text-black mb-5">
-                              {video.name}
-                            </span>
-                            <span className="text-sm font-normal text-black">
-                              {video.description}
-                            </span>
-                          </div>
-                        </Modal> */}
 
                         {addProduct.length !== 0 ? (
                           <div
                             className={styles.buttonAddListProduct}
-                            onClick={handleOpenModal}
+                            onClick={
+                              windowSize.width <= 767
+                                ? handleOpenModalMobile
+                                : handleOpenModal
+                            }
                             data-ripple-light="true"
                           >
                             <button className={styles.button}>
@@ -365,6 +402,23 @@ export default function VideoList() {
           <ModalForm isOpen={isModalOpen} onClose={handleCloseModal}>
             <FormCatalog onSubmit={handleFormSubmit} />
           </ModalForm>
+          <ModalCartResumen
+            isOpen={isModalOpenMobile}
+            onClose={handleCloseModalMobile}
+          >
+            <ResumenCatalogue />
+          </ModalCartResumen>
+          <Modal
+            isOpen={isModalOpenInfo}
+            onClose={handleCloseModalInfo}
+          >
+            {selectedVideoIndex !== null && (
+          <div className={styles.ModalInfo}>
+          <h1>{videos[currentIndex]?.name}</h1>
+          <span>{videos[currentIndex]?.description}</span>
+        </div>
+        )}            
+          </Modal>
         </>
       ) : (
         <>

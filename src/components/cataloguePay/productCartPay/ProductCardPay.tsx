@@ -21,7 +21,7 @@ export default function ProductCardPay(catalog: Props) {
               alt={`${catalog.catalogs.name} thumbnail`}
             />
           </div>
-          <div className="">
+          <div className={styles.conatinerProductCartName}>
             <span className={styles.productCartName}>
               {catalog.catalogs.name}
             </span>

@@ -1,7 +1,7 @@
 .mainResumenCatalogue {
     display: flex;
     padding-top: 1.5rem;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 2rem;
     align-items: center;
   
@@ -10,6 +10,14 @@
       justify-content: center;
       align-items: flex-start;
     }
+  }
+
+  .containerItemCat{
+    height: 100%;
+    max-height: 320px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
   }
   
   .containerPayCatalogue {
@@ -171,7 +179,7 @@
   }
   
   .productGridCard:first-child{
-      border-bottom: 0;
+      border-bottom:0;
   }
   .productGridCard:last-child{
       border-top: 0 ;
@@ -225,3 +233,19 @@
       font-weight: 600; 
       color: #53545C;
   }
+
+  .nextShopButton {
+    border-radius: 1rem; 
+    width: 100%; 
+    font-size: 1.25rem;
+    line-height: 1.75rem; 
+    font-weight: 700; 
+    background: #F6A97D;
+    height: 54px;
+    color: #53545C;
+    border: transparent;
+}
+
+.conatinerButtonShop{
+    width: 100%;
+}

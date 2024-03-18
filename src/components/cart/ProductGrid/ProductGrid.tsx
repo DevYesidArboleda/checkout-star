@@ -10,6 +10,7 @@ import ModalForm from "@/components/Modal/ModalForm/ModalForm";
 import FormCatalog from "@/components/formCatalog/FormCatalog";
 import ModalCartResumen from "@/components/Modal/ModalCartResumen/ModalCartResumen";
 import { ResumenCatalogue } from "../ResumeCatalogue/ResumenCatalogue";
+import { UseWindowSize } from "@/hooks/UseWindowSize";
 
 interface Props {
   catalog: SimpleCatalog[];
@@ -21,7 +22,7 @@ export default function ProductGrid({ catalog }: Props) {
     (total, elemento) => total + elemento.price * elemento.quantity,
     0
   );  
-
+  const windowSize = UseWindowSize();
   const dispatch = useDispatch();
 
   const handleLimpiarCatalogo = () => {
@@ -43,11 +44,11 @@ export default function ProductGrid({ catalog }: Props) {
   const [isModalOpenMobile, setIsModalOpenMobile] = useState(false);
 
   const handleOpenModalMobile = () => {
-    setIsModalOpen(true);
+    setIsModalOpenMobile(true);
   };
 
   const handleCloseModalMobile = () => {
-    setIsModalOpen(false);
+    setIsModalOpenMobile(false);
   };
 
   const handleFormSubmit = (data: any) => {
@@ -127,7 +128,7 @@ export default function ProductGrid({ catalog }: Props) {
               <button
                 className={styles.nextShopButton}
                 type="button"
-                onClick={handleOpenModal}
+                onClick={windowSize.width <= 767 ? handleOpenModalMobile : handleOpenModal}
               >
                 Continuar con la compra
               </button>
