@@ -152,7 +152,7 @@ export default function VideoList() {
   //metodo para scroll
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
+  console.log(currentIndex)
   const handleScroll = () => {
     if (videoContainerRef.current) {
       const container = videoContainerRef.current;
@@ -177,20 +177,34 @@ export default function VideoList() {
 
   const handleButtonClick = (direction: "up" | "down") => {
     let newIndex;
+    const lastIndex = videos.length - 1;
+    console.log("a", lastIndex)
     if (direction === "up") {
       newIndex = currentIndex - 1;
-      if (newIndex < 0) return; // Evitar desplazamiento negativo
+      if (newIndex < -1) return; // Evitar desplazamiento negativo
     } else {
       newIndex = currentIndex + 1;
-      if (newIndex >= videos.length) return; // Evitar desplazamiento más allá del último video
+      if (newIndex > lastIndex) return; // Evitar desplazamiento más allá del último video
     }
-
-    setCurrentIndex(newIndex);
-
+  
+    if (newIndex === 0 && currentIndex !== 0) {
+      if (videoContainerRef.current) {
+        videoContainerRef.current.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } else if (newIndex === lastIndex && currentIndex !== lastIndex) {
+      if (videoContainerRef.current) {
+        const container = videoContainerRef.current;
+        const lastVideo = container.children[lastIndex] as HTMLDivElement | undefined;
+        if (lastVideo) {
+          lastVideo.scrollIntoView({ behavior: "smooth", block: "end" });
+        }
+      }
+    } else {
+      setCurrentIndex(newIndex); // Establecer el nuevo índice solo si no es necesario desplazarse al principio o al final
+    }
+  
     if (videoContainerRef.current) {
-      const targetVideo = videoContainerRef.current.children[newIndex] as
-        | HTMLDivElement
-        | undefined;
+      const targetVideo = videoContainerRef.current.children[newIndex] as HTMLDivElement | undefined;
       if (targetVideo) {
         targetVideo.scrollIntoView({ behavior: "smooth", block: "start" });
       }

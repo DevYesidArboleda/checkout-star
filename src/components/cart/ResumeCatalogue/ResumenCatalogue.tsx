@@ -52,7 +52,7 @@ export const ResumenCatalogue = () => {
             </div>
             <div className={styles.priceTotal}>
               <span className=" ">Valor total</span>
-              <span className="">
+              <span className={styles.fontTotalPrice}>
                 ${new Intl.NumberFormat().format(addAll)}
               </span>
             </div>

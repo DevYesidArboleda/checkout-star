@@ -249,3 +249,8 @@
 .conatinerButtonShop{
     width: 100%;
 }
+
+.fontTotalPrice {
+  font-weight: 600;
+  color: #000000;
+}
