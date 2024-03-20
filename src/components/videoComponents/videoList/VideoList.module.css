@@ -306,7 +306,10 @@
 }
 
 .containerButtonScroll{
-  top: 180px;  
+  top: 580px;  
+  @media screen and (max-width: 400px) { 
+    top: 2px; 
+  }
 }
 
 .buttonUp {

@@ -382,7 +382,9 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
                   >
                     Ciudad
                     {city.length > 0 &&
-                      city.map((items: any, index: number) => {
+                      city.slice()
+                      .sort((a: any, b: any) => a.name.localeCompare(b.name))
+                      .map((items: any, index: number) => {
                         return (
                           <option key={index} value={items.dropi_id}>
                             {items.name}

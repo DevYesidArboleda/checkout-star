@@ -11,7 +11,7 @@ import FormInput from "../inputComponent/formInput";
 import { useAppSelector } from "@/store";
 import { dataApi } from "../../../api";
 import ErrorModel from "../Modal/ErrorModal/ErrorModal";
-import Image from 'next/image'
+import Image from "next/image";
 
 interface FormularioPedidoProps {
   onSubmit: (data: any) => void;
@@ -31,7 +31,6 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
   const [openError, setOpenError] = useState<boolean>(false);
 
   const addProduct = useAppSelector((state) => Object.values(state.catalogo));
-  
 
   const {
     register,
@@ -41,7 +40,7 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
     resolver: zodResolver(FormDataSchema),
   });
 
-  const processForm: SubmitHandler<Inputs> = async (data) => {    
+  const processForm: SubmitHandler<Inputs> = async (data) => {
     const dataClient: any = {
       client_name: data.name,
       client_direction: data.street,
@@ -51,47 +50,44 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
       client_phone: data.phone,
       client_email: data.email,
     };
-  
+
     // State data
     const productsDataFromState = addProduct.map((product: any) => ({
-      product_id: product.id, 
+      product_id: product.id,
       client_quantity: product.quantity,
       variation_id: product.variation_id,
     }));
-  
+
     const newData = {
       ...dataClient,
       user_id,
-      client_notes: "", 
+      client_notes: "",
       catalogue: {
         id: catalogue_id, // ID del catálogo
         products: productsDataFromState, // Array de productos
       },
     };
-    
+
     try {
       console.log(newData);
       const response = await dataApi.post<any>("/orders/create-order", newData);
-      console.log(response);     
+      console.log(response);
       console.log("Se creó la orden");
       router.push(`/completePayCatalogue?userID=${user_id}`);
     } catch (error: any) {
       console.error("Error al enviar los datos:", error);
       console.log(error.response.data.stack.message);
-       setError(error.response.data.stack.message);
-       handleErrorModal();
+      setError(error.response.data.stack.message);
+      handleErrorModal();
     }
   };
 
   useEffect(() => {
     fetchDeparment().then((e) => {
       setDepartment(e);
-      setCityid(e[0]?.dropi_id)
+      setCityid(e[0]?.dropi_id);
     });
-    
   }, []);
-
-  
 
   const handleInputDeparment = (e: any) => {
     let index = e.target.selectedIndex;
@@ -110,7 +106,7 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
     setOpenError(true);
   };
 
-  console.log("city", cityid)
+  console.log("city", cityid);
 
   return (
     <div className="">
@@ -152,7 +148,7 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
               placeholder="Correo Electrónico"
               error={errors.email?.message}
             />
-            
+
             <FormInput
               id="street"
               type="text"
@@ -198,13 +194,16 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
                 >
                   Ciudad
                   {city.length > 0 &&
-                    city.map((items: any, index: number) => {
-                      return (
-                        <option key={index} value={items.dropi_id}>
-                          {items.name}
-                        </option>
-                      );
-                    })}
+                    city
+                      .slice()
+                      .sort((a: any, b: any) => a.name.localeCompare(b.name))
+                      .map((items: any, index: number) => {
+                        return (
+                          <option key={index} value={items.dropi_id}>
+                            {items.name}
+                          </option>
+                        );
+                      })}
                 </select>
                 {errors.city?.message && (
                   <span className={styles.alert_input}>
@@ -236,15 +235,13 @@ const FormCatalog: React.FC<FormularioPedidoProps> = ({ onSubmit }) => {
         </div>
       </form>
       <ErrorModel isOpen={openError} onClose={() => setOpenError(false)}>
-      <div className={styles.containerErrorModal}>
+        <div className={styles.containerErrorModal}>
           <div className="">
             <Image src="/img/task_alt.svg" alt="" width={32} height={32} />
           </div>
-          <span className={styles.textErrorModal}>
-            {error}
-          </span>
+          <span className={styles.textErrorModal}>{error}</span>
         </div>
-          </ErrorModel>
+      </ErrorModel>
     </div>
   );
 };

@@ -184,6 +184,7 @@ export default function VideoList() {
       if (newIndex < -1) return; // Evitar desplazamiento negativo
     } else {
       newIndex = currentIndex + 1;
+      console.log("entro aca", newIndex)
       if (newIndex > lastIndex) return; // Evitar desplazamiento más allá del último video
     }
   
@@ -200,7 +201,8 @@ export default function VideoList() {
         }
       }
     } else {
-      setCurrentIndex(newIndex); // Establecer el nuevo índice solo si no es necesario desplazarse al principio o al final
+      setCurrentIndex(newIndex); 
+      console.log("aja", newIndex)// Establecer el nuevo índice solo si no es necesario desplazarse al principio o al final
     }
   
     if (videoContainerRef.current) {
