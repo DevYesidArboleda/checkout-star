@@ -27,7 +27,7 @@ export default function Video ({ src, name, price, thumbnail }: VideoProps) {
         url={src}
         controls={false}
         width="100%"
-        height="100%"
+        height="100dvh"
         playing={isPlaying}
         loop={true}
         muted={true}

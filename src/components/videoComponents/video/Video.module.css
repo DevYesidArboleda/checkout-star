@@ -2,7 +2,7 @@
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    height: 100vh; 
+    height: 100dvh; 
     background-color: #000000; 
     scroll-snap-align: start; 
     width: 100%;
@@ -10,5 +10,5 @@
 
 .wraperVideo video{
     object-fit: cover; 
-    height: 100vh !important; 
+    height: 100dvh !important; 
 }

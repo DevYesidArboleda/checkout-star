@@ -41,10 +41,10 @@
   max-height: 101px;
   height: 100%;
   @media (max-width: 400px) { 
-    bottom: 170px;
+    bottom: 110px;
   }
   @media (max-width: 340px) { 
-    bottom: 135px;
+    bottom: 105px;
   }
 }
 
@@ -147,10 +147,10 @@
   background: transparent;
   margin-right: 8px;
   @media (max-width: 400px) { 
-    bottom: 155px;
+    bottom: 105px;
   }
   @media (max-width: 340px) { 
-    bottom: 125px;
+    bottom: 95px;
   }
 }
 
@@ -364,7 +364,7 @@
   margin-right: 10px; 
   margin-bottom: 0; 
   color: #ffffff; 
-  bottom: 270px;
+  bottom: 220px;
   right: 0;
   background-color: transparent;
   border: 0;
