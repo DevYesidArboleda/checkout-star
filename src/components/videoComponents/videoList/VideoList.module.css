@@ -21,6 +21,7 @@
   height: 100dvh;
   scroll-snap-type: y var(--tw-scroll-snap-strictness);
   --tw-scroll-snap-strictness: mandatory;
+  scroll-snap-stop: always;
 }
 
 .wraperVideoList {
@@ -59,7 +60,7 @@
   border-bottom-right-radius: 9999px;
   border-left-width: 0;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  width: 75%;
+  width: 80%;
   background: #21181a91;
   border-color: #dad2d250;
   height: 100%;  
@@ -152,6 +153,10 @@
   @media (max-width: 340px) { 
     bottom: 95px;
   }
+}
+
+.buttonAddListHidden {
+  display: none;
 }
 
 .buttonAddListText {
@@ -397,4 +402,12 @@
   @media (max-width: 380px) { 
     font-size: 16px;
   }
+}
+
+.loadingContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #53545C;
+  font-weight: 600;
 }

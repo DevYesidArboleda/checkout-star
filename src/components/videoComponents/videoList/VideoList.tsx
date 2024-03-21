@@ -178,13 +178,12 @@ export default function VideoList() {
   const handleButtonClick = (direction: "up" | "down") => {
     let newIndex;
     const lastIndex = videos.length - 1;
-    console.log("a", lastIndex)
+
     if (direction === "up") {
       newIndex = currentIndex - 1;
       if (newIndex < -1) return; // Evitar desplazamiento negativo
     } else {
       newIndex = currentIndex + 1;
-      console.log("entro aca", newIndex)
       if (newIndex > lastIndex) return; // Evitar desplazamiento más allá del último video
     }
   
@@ -202,7 +201,6 @@ export default function VideoList() {
       }
     } else {
       setCurrentIndex(newIndex); 
-      console.log("aja", newIndex)// Establecer el nuevo índice solo si no es necesario desplazarse al principio o al final
     }
   
     if (videoContainerRef.current) {
@@ -223,7 +221,9 @@ export default function VideoList() {
               ref={videoContainerRef}
             >
               {!videos
-                ? "Loading..."
+                ? <div className={styles.loadingContent}>
+                  <span>"Loading..."</span>
+                </div>
                 : // @ts-ignore
                   videos.map((video, index) => {
                     return (
@@ -258,7 +258,7 @@ export default function VideoList() {
                               ""
                             )
                           }
-                          className={styles.buttonAddList}
+                          className={addProduct.length === 0 ? styles.buttonAddListHidden : styles.buttonAddList}
                         >
                           {<Lottie animationData={animationData} />}
                           <span className={styles.buttonAddListText}>
@@ -389,14 +389,25 @@ export default function VideoList() {
                             />
                           </button>
                         </div>
-
-                        {addProduct.length !== 0 ? (
+                        
                           <div
                             className={styles.buttonAddListProduct}
                             onClick={
-                              windowSize.width <= 767
-                                ? handleOpenModalMobile
-                                : handleOpenModal
+                              addProduct.length === 0 ? 
+                              () =>
+                            onToggle(
+                              videos[currentIndex]._id,
+                              videos[currentIndex].name,
+                              videos[currentIndex].description,
+                              videos[currentIndex].price,
+                              1,
+                              videos[currentIndex].thumbnail,
+                              videos[currentIndex].variations,
+                              videos[currentIndex].attributes,
+                              ""
+                            ) : (windowSize.width <= 767
+                              ? handleOpenModalMobile
+                              : handleOpenModal)
                             }
                             data-ripple-light="true"
                           >
@@ -404,9 +415,7 @@ export default function VideoList() {
                               ¡Comprar Ahora!
                             </button>
                           </div>
-                        ) : (
-                          ""
-                        )}
+                       
                       </div>
                     );
                   })}
