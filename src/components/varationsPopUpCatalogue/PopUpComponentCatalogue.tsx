@@ -105,6 +105,7 @@ const PopUpComponentCatalogue: React.FC<PopupComponentProps> = ({
                     htmlFor={attribute.description}
                     className={styles.containerLabel}
                   >{`Seleccionar ${attribute.description}:`}</label>
+                  <div className={styles.customSelect}>
                   <select
                     key={attribute.stock}
                     id={attribute.description}
@@ -139,6 +140,7 @@ const PopUpComponentCatalogue: React.FC<PopupComponentProps> = ({
                       </option>
                     ))}
                   </select>
+                  </div>
                 </div>
               ))}
 
