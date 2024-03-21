@@ -222,7 +222,7 @@ export default function VideoList() {
             >
               {!videos
                 ? <div className={styles.loadingContent}>
-                  <span>"Loading..."</span>
+                  <span>Loading...</span>
                 </div>
                 : // @ts-ignore
                   videos.map((video, index) => {
