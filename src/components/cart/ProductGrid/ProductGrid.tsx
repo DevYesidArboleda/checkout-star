@@ -89,20 +89,22 @@ export default function ProductGrid({ catalog }: Props) {
               </div>
             </div>
 
-            {allProduct.length === 0 ? (
-              <div className={styles.emptyCartContainer}>
-                <Image
-                    src="/img/emptyCart.svg"
-                    alt=""
-                    width={108}
-                    height={95}
-                    className=""
-                  />
-                  <span className={styles.emptycartText}>Carrito de compra vacío</span>
-              </div>
-            ) : (
-              catalog.map((cat) => <ProductCard key={cat.id} catalogs={cat} />)
-            )}
+            <div className={styles.containerProductCard}>
+              {allProduct.length === 0 ? (
+                <div className={styles.emptyCartContainer}>
+                  <Image
+                      src="/img/emptyCart.svg"
+                      alt=""
+                      width={108}
+                      height={95}
+                      className=""
+                    />
+                    <span className={styles.emptycartText}>Carrito de compra vacío</span>
+                </div>
+              ) : (
+                catalog.map((cat) => <ProductCard key={cat.id} catalogs={cat} />)
+              )}
+            </div>
           </div>
 
           <div className={styles.itemAllItems}>

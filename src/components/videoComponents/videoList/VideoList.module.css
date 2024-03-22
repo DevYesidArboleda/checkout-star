@@ -293,6 +293,23 @@
   }
 }
 
+.buttonAddCatalogue {
+  background-color: #F6A97D; 
+  color: #53545C; 
+  border: none;
+  width: 90%;
+  height: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 2rem; 
+  font-weight: 700; 
+  animation: pulse 1s infinite; 
+  @media (max-width: 380px) { 
+    font-size: 16px;
+  }
+}
+
 .messagePop{
   position: fixed;
   top: 20px; 
@@ -312,8 +329,12 @@
 
 .containerButtonScroll{
   top: 580px;  
+  position: fixed;
   @media screen and (max-width: 400px) { 
     top: 2px; 
+  }
+  @media screen and (min-width: 700px) { 
+    top: 500px; 
   }
 }
 
@@ -410,4 +431,28 @@
   align-items: center;
   color: #53545C;
   font-weight: 600;
+}
+
+.containerVariation{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #A8A8A882;
+}
+
+.containerVariation ul{
+  display: flex;    
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.containerVariation li{
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+}
+
+.containerVariation h3{
+  text-transform: capitalize;
 }

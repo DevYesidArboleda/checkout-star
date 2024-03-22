@@ -20,6 +20,7 @@ import ModalCartResumen from "@/components/Modal/ModalCartResumen/ModalCartResum
 import { ResumenCatalogue } from "@/components/cart/ResumeCatalogue/ResumenCatalogue";
 import { UseWindowSize } from "@/hooks/UseWindowSize";
 import Modal from "@/components/Modal/ModalInfo/Modal";
+import { colorNameToHex } from "@/components/utils/colors";
 
 export default function VideoList() {
   const [videos, setVideos] = useState<any>();
@@ -139,7 +140,7 @@ export default function VideoList() {
   const [isModalOpenInfo, setIsModalOpenInfo] = useState(false);
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(null);
 
-  const handleOpenModalInfo = (index:any) => {
+  const handleOpenModalInfo = (index: any) => {
     setSelectedVideoIndex(index);
     setIsModalOpenInfo(true);
   };
@@ -152,7 +153,7 @@ export default function VideoList() {
   //metodo para scroll
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  console.log(currentIndex)
+  console.log(currentIndex);
   const handleScroll = () => {
     if (videoContainerRef.current) {
       const container = videoContainerRef.current;
@@ -186,7 +187,7 @@ export default function VideoList() {
       newIndex = currentIndex + 1;
       if (newIndex > lastIndex) return; // Evitar desplazamiento más allá del último video
     }
-  
+
     if (newIndex === 0 && currentIndex !== 0) {
       if (videoContainerRef.current) {
         videoContainerRef.current.scrollTo({ top: 0, behavior: "smooth" });
@@ -194,22 +195,48 @@ export default function VideoList() {
     } else if (newIndex === lastIndex && currentIndex !== lastIndex) {
       if (videoContainerRef.current) {
         const container = videoContainerRef.current;
-        const lastVideo = container.children[lastIndex] as HTMLDivElement | undefined;
+        const lastVideo = container.children[lastIndex] as
+          | HTMLDivElement
+          | undefined;
         if (lastVideo) {
           lastVideo.scrollIntoView({ behavior: "smooth", block: "end" });
         }
       }
     } else {
-      setCurrentIndex(newIndex); 
+      setCurrentIndex(newIndex);
     }
-  
+
     if (videoContainerRef.current) {
-      const targetVideo = videoContainerRef.current.children[newIndex] as HTMLDivElement | undefined;
+      const targetVideo = videoContainerRef.current.children[newIndex] as
+        | HTMLDivElement
+        | undefined;
       if (targetVideo) {
         targetVideo.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
   };
+
+  //traer Info para variaciones colores
+  const attributeValues: any = {};
+
+  if (videos && videos[currentIndex]?.attributes) {
+    videos[currentIndex]?.attributes.forEach((attribute: any) => {
+      const { description, values } = attribute;
+  
+      values.forEach((value: any) => {
+        const { attribute_name, value: attributeValue } = value;
+  
+        if (!attributeValues[attribute_name]) {
+          attributeValues[attribute_name] = [];
+        }
+  
+        const hexColor = colorNameToHex[attributeValue.toLowerCase()];
+        const displayValue = hexColor || attributeValue;
+  
+        attributeValues[attribute_name].push(displayValue);
+      });
+    });
+  }
 
   return (
     <>
@@ -220,205 +247,214 @@ export default function VideoList() {
               className={styles.sectionVideoList}
               ref={videoContainerRef}
             >
-              {!videos
-                ? <div className={styles.loadingContent}>
+              {!videos ? (
+                <div className={styles.loadingContent}>
                   <span>Loading...</span>
                 </div>
-                : // @ts-ignore
-                  videos.map((video, index) => {
-                    return (
-                      <div
-                        className={styles.wraperVideoList}
-                        key={index}
-                        style={{ scrollSnapAlign: "start" }}
-                      >
-                        {/* {!isModalOpenCart && <Video
+              ) : (
+                // @ts-ignore
+                videos.map((video, index) => {
+                  return (
+                    <div
+                      className={styles.wraperVideoList}
+                      key={index}
+                      style={{ scrollSnapAlign: "start" }}
+                    >
+                      {/* {!isModalOpenCart && <Video
                           src={video.videoUrl}
                           name={video.name}
                           price={video.price}
                           thumbnail={video.thumbnai}
                         /> } */}
-                        <Video
-                          src={video.videoUrl}
-                          name={video.name}
-                          price={video.price}
-                          thumbnail={video.thumbnai}
+                      <Video
+                        src={video.videoUrl}
+                        name={video.name}
+                        price={video.price}
+                        thumbnail={video.thumbnai}
+                      />
+                      <button
+                        onClick={() =>
+                          onToggle(
+                            video._id,
+                            video.name,
+                            video.description,
+                            video.price,
+                            1,
+                            video.thumbnail,
+                            video.variations,
+                            video.attributes,
+                            ""
+                          )
+                        }
+                        className={
+                          addProduct.length === 0
+                            ? styles.buttonAddListHidden
+                            : styles.buttonAddList
+                        }
+                      >
+                        {<Lottie animationData={animationData} />}
+                        <span className={styles.buttonAddListText}>
+                          Agregar
+                        </span>
+                      </button>
+
+                      <button
+                        onClick={() => handleOpenModalInfo(index)}
+                        className={styles.imageInfo}
+                      >
+                        <Image
+                          src="/img/infoProduct.svg"
+                          alt=""
+                          width={50}
+                          height={50}
                         />
-                        <button
-                          onClick={() =>
-                            onToggle(
-                              video._id,
-                              video.name,
-                              video.description,
-                              video.price,
-                              1,
-                              video.thumbnail,
-                              video.variations,
-                              video.attributes,
-                              ""
-                            )
-                          }
-                          className={addProduct.length === 0 ? styles.buttonAddListHidden : styles.buttonAddList}
-                        >
-                          {<Lottie animationData={animationData} />}
-                          <span className={styles.buttonAddListText}>
-                            Agregar
-                          </span>
-                        </button>
+                      </button>
 
-                        <button
-                          onClick={() => handleOpenModalInfo(index)}
-                          className={styles.imageInfo}
-                        >
-                          <Image
-                            src="/img/infoProduct.svg"
-                            alt=""
-                            width={50}
-                            height={50}
-                          />
-                        </button>
-
-                        <div
-                          className={styles.cartBody}
-                          onClick={handleOpenModalCart}
-                        >
-                          <Image
-                            src="/img/cart.svg"
-                            alt=""
-                            width={20}
-                            height={20}
-                          />
-                          <span className={styles.cartBodyText}>
-                            {addProduct.length}
-                          </span>
-                        </div>
-
-                        <ModalCart
-                          isOpen={isModalOpenCart}
-                          onClose={handleCloseModalCart}
-                        >
-                          <div className={styles.modalProductGrid}>
-                            <ProductGrid catalog={addProduct} />
-                          </div>
-                        </ModalCart>
-
-                        <div className={styles.imageMain}>
-                          <div className={styles.imageRounde}>
-                            <div className={styles.imageRounderWraper}>
-                              <img
-                                className={styles.imageCover}
-                                src={video.thumbnail}
-                                alt={`${video.name} thumbnail`}
-                              />
-                            </div>
-
-                            <div className={styles.priceContainer}>
-                              <div className={styles.priceText}>
-                                <span>
-                                  Precio:{" "}
-                                  <span className={styles.priceBold}>
-                                    $
-                                    {new Intl.NumberFormat().format(
-                                      video.price
-                                    )}
-                                  </span>
-                                </span>
-                              </div>
-                              <div
-                                className={styles.separationfreeTextContainer}
-                              ></div>
-                              <div style={{ paddingTop: 8 }}>
-                                <span className={styles.freeTextContainer}>
-                                  Envío: GRATIS
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className={styles.thumbnailContainer}>
-                          <div className={styles.thumbnailRounde}>
-                            <img
-                              className={styles.thumbnailImage}
-                              src={video.thumbnail}
-                              alt={`${video.name} overlay thumbnail`}
-                            />
-                          </div>
-                          <div className={styles.containerTextImage}>
-                            <div className={styles.textImageThumbanail}>
-                              <p className="">{video.name}</p>
-                            </div>
-                          </div>
-                        </div>
-
-                        {message && (
-                          <p className={styles.messagePop}>{message}</p>
-                        )}
-
-                        <div className={styles.containerButtonScroll}>
-                          <button
-                            onClick={() => handleButtonClick("up")}
-                            disabled={currentIndex === 0}
-                            className={`${styles.buttonUp} ${
-                              currentIndex === 0 ? styles.buttonUpHidden : ""
-                            }`}
-                          >
-                            <Image
-                              src="/img/ScrollUp.svg"
-                              alt=""
-                              width={32}
-                              height={32}
-                            />
-                          </button>
-
-                          <button
-                            onClick={() => handleButtonClick("down")}
-                            disabled={currentIndex === videos.length - 1}
-                            className={styles.buttonDown}
-                          >
-                            <Image
-                              src="/img/ScrollUp.svg"
-                              alt=""
-                              width={32}
-                              height={32}
-                              className={`${styles.buttonDownImage} ${
-                                currentIndex === videos.length - 1
-                                  ? styles.buttonDownHidden
-                                  : ""
-                              }`}
-                            />
-                          </button>
-                        </div>
-                        
-                          <div
-                            className={styles.buttonAddListProduct}
-                            onClick={
-                              addProduct.length === 0 ? 
-                              () =>
-                            onToggle(
-                              videos[currentIndex]._id,
-                              videos[currentIndex].name,
-                              videos[currentIndex].description,
-                              videos[currentIndex].price,
-                              1,
-                              videos[currentIndex].thumbnail,
-                              videos[currentIndex].variations,
-                              videos[currentIndex].attributes,
-                              ""
-                            ) : (windowSize.width <= 767
-                              ? handleOpenModalMobile
-                              : handleOpenModal)
-                            }
-                            data-ripple-light="true"
-                          >
-                            <button className={styles.button}>
-                              ¡Comprar Ahora!
-                            </button>
-                          </div>
-                       
+                      <div
+                        className={styles.cartBody}
+                        onClick={handleOpenModalCart}
+                      >
+                        <Image
+                          src="/img/cart.svg"
+                          alt=""
+                          width={20}
+                          height={20}
+                        />
+                        <span className={styles.cartBodyText}>
+                          {addProduct.length}
+                        </span>
                       </div>
-                    );
-                  })}
+
+                      <ModalCart
+                        isOpen={isModalOpenCart}
+                        onClose={handleCloseModalCart}
+                      >
+                        <div className={styles.modalProductGrid}>
+                          <ProductGrid catalog={addProduct} />
+                        </div>
+                      </ModalCart>
+
+                      <div className={styles.imageMain}>
+                        <div className={styles.imageRounde}>
+                          <div className={styles.imageRounderWraper}>
+                            <img
+                              className={styles.imageCover}
+                              src={video.thumbnail}
+                              alt={`${video.name} thumbnail`}
+                            />
+                          </div>
+
+                          <div className={styles.priceContainer}>
+                            <div className={styles.priceText}>
+                              <span>
+                                Precio:{" "}
+                                <span className={styles.priceBold}>
+                                  ${new Intl.NumberFormat().format(video.price)}
+                                </span>
+                              </span>
+                            </div>
+                            <div
+                              className={styles.separationfreeTextContainer}
+                            ></div>
+                            <div style={{ paddingTop: 8 }}>
+                              <span className={styles.freeTextContainer}>
+                                Envío: GRATIS
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className={styles.thumbnailContainer}>
+                        <div className={styles.thumbnailRounde}>
+                          <img
+                            className={styles.thumbnailImage}
+                            src={video.thumbnail}
+                            alt={`${video.name} overlay thumbnail`}
+                          />
+                        </div>
+                        <div className={styles.containerTextImage}>
+                          <div className={styles.textImageThumbanail}>
+                            <p className="">{video.name}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {message && (
+                        <p className={styles.messagePop}>{message}</p>
+                      )}
+
+                      <div className={styles.containerButtonScroll}>
+                        <button
+                          onClick={() => handleButtonClick("up")}
+                          disabled={currentIndex === 0}
+                          className={`${styles.buttonUp} ${
+                            currentIndex === 0 ? styles.buttonUpHidden : ""
+                          }`}
+                        >
+                          <Image
+                            src="/img/ScrollUp.svg"
+                            alt=""
+                            width={32}
+                            height={32}
+                          />
+                        </button>
+
+                        <button
+                          onClick={() => handleButtonClick("down")}
+                          disabled={currentIndex === videos.length - 1}
+                          className={styles.buttonDown}
+                        >
+                          <Image
+                            src="/img/ScrollUp.svg"
+                            alt=""
+                            width={32}
+                            height={32}
+                            className={`${styles.buttonDownImage} ${
+                              currentIndex === videos.length - 1
+                                ? styles.buttonDownHidden
+                                : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
+
+                      <div
+                        className={styles.buttonAddListProduct}
+                        onClick={
+                          addProduct.length === 0
+                            ? () =>
+                                onToggle(
+                                  videos[currentIndex]._id,
+                                  videos[currentIndex].name,
+                                  videos[currentIndex].description,
+                                  videos[currentIndex].price,
+                                  1,
+                                  videos[currentIndex].thumbnail,
+                                  videos[currentIndex].variations,
+                                  videos[currentIndex].attributes,
+                                  ""
+                                )
+                            : windowSize.width <= 767
+                            ? handleOpenModalMobile
+                            : handleOpenModal
+                        }
+                        data-ripple-light="true"
+                      >
+                        {addProduct.length === 0 ? (
+                          <button className={styles.buttonAddCatalogue}>
+                            ¡Agregar Ahora!
+                          </button>
+                        ) : (
+                          <button className={styles.button}>
+                            ¡Comprar Ahora!
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })
+              )}
             </section>
           </div>
           <div className={styles.videoListProductGrid}>
@@ -433,16 +469,44 @@ export default function VideoList() {
           >
             <ResumenCatalogue />
           </ModalCartResumen>
-          <Modal
-            isOpen={isModalOpenInfo}
-            onClose={handleCloseModalInfo}
-          >
+          <Modal isOpen={isModalOpenInfo} onClose={handleCloseModalInfo}>
             {selectedVideoIndex !== null && (
-          <div className={styles.ModalInfo}>
-          <h1>{videos[currentIndex]?.name}</h1>
-          <span>{videos[currentIndex]?.description}</span>
-        </div>
-        )}            
+              <div className={styles.ModalInfo}>
+                <h1>{videos[currentIndex]?.name}</h1>
+                <span>{videos[currentIndex]?.description}</span>
+                {videos[currentIndex].attributes?.length > 0 && (
+                  <div className={styles.containerVariation}>
+                    {Object.entries(attributeValues).map(
+                      ([attributeName, values]: any) => (
+                        <div key={attributeName}>
+                          <h3>{attributeName}:</h3>
+                          <ul>
+                            {values.map((value: any, index: any) => (
+                              <li
+                                key={index}
+                                style={
+                                  isColor(value)
+                                    ? {
+                                        color: value,
+                                        background: value,
+                                        width: "24px",
+                                        height: "24px",
+                                        borderRadius: "5px",
+                                      }
+                                    : {}
+                                }
+                              >
+                                {isColor(value) ? "" : value}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </Modal>
         </>
       ) : (
@@ -461,3 +525,7 @@ export default function VideoList() {
     </>
   );
 }
+
+const isColor = (value: string): boolean => {
+  return /^#([0-9A-F]{3}){1,2}$/i.test(value);
+};

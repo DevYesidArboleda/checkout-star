@@ -3,12 +3,13 @@
     margin-right: auto;
     right: 0; 
     width: 100%; 
-    border-bottom: 1px solid #BBC1CA6B;
+    border-bottom: 1px solid #BBC1CA6B;   
 }
 
 .mainProductCart:first-child{
-    border-bottom: 0;
+    
 }
+
 .mainProductCart:last-child{
     border-top: 0 ;
     border-bottom: 0;
@@ -19,7 +20,7 @@
     padding-top: 1rem;
     padding-bottom: 1rem; 
     flex-direction: column; 
-    background-color: #ffffff; 
+    background-color: #ffffff;    
 }
 
 .productCartContainerImage {
@@ -78,6 +79,9 @@
     margin-top: 1rem; 
     justify-content: space-between; 
     width: 100%; 
+    @media (max-width: 380px) { 
+        margin-top: 5px; 
+      } 
 }
 
 .productCartModifyButton{

@@ -34,15 +34,22 @@
 
 .productGridCard{
     display: flex; 
-    overflow-y: auto;     
+    overflow-y: hidden;     
     padding: 1rem; 
     flex-direction: column; 
     border-radius: 1rem; 
     background-color: #ffffff; 
     max-height: 600px;
-    @media (max-width: 500px) { 
+    @media (max-width: 400px) { 
+        max-height: 330px;
+    }
+    @media (max-width: 340px) { 
         max-height: 300px;
     }
+}
+
+.containerProductCard {
+    overflow-y: auto;     
 }
 
 .headerProductgridCart{
