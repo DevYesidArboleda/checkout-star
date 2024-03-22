@@ -249,7 +249,7 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
               <div className={styles.popUpError}>
                 <p>¡La combinación seleccionada no está disponible!</p>
               </div>
-            )}
+            )}            
           </div>
         </div>
       </div>
@@ -273,6 +273,10 @@ const FormProductMobile: React.FC<FormularioPedidoProps> = ({
           <h1 className="">Envío</h1>
           <span className={styles.freePrice}>GRATIS</span>
         </div>
+          {/* Aquí puedes mostrar los resultados obtenidos después de seleccionar las opciones */}
+          {Object.entries(selectedVariations).map(([description, value]) => (
+            <div className={styles.containerResumeText} key={description}>{<h1>{description}</h1> }{<span>{value}</span>}</div>
+          ))}
         <div className={styles.containerResumeText}>
           <h1 className="">Color</h1>
           <span className="">Por definir</span>
